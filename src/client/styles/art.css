@@ -1,0 +1,69 @@
+/* ── Party Crew characters ─────────────────────────────────────────────── */
+.char { overflow: visible; flex: none; }
+.char .char-body { transform-box: view-box; transform-origin: 60px 104px; }
+.char .char-shadow { transform-box: view-box; transform-origin: 60px 110px; }
+.char-bob .char-body { animation: char-bob 2.6s ease-in-out infinite; animation-delay: var(--char-delay, 0s); }
+.char-bob .char-shadow { animation: char-shadow 2.6s ease-in-out infinite; animation-delay: var(--char-delay, 0s); }
+.char-bob.is-floaty .char-body { animation-name: char-float; animation-duration: 3.2s; }
+.char-bob.is-floaty .char-shadow { animation-name: char-float-shadow; animation-duration: 3.2s; }
+.char-jump .char-body { animation: char-jump 0.65s var(--ease-pop); }
+.char-shake .char-body { animation: char-shake 0.5s ease-in-out; }
+.char.is-dim { opacity: 0.38; filter: grayscale(0.6); }
+.char-eyes { transform-box: fill-box; transform-origin: center; animation: char-blink 5.5s infinite; animation-delay: var(--char-delay, 0s); }
+
+@keyframes char-bob { 0%, 100% { transform: translateY(0) scale(1, 1); } 50% { transform: translateY(-4px) scale(0.98, 1.02); } }
+@keyframes char-shadow { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.9); } }
+@keyframes char-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes char-float-shadow { 0%, 100% { transform: scale(1); opacity: 0.2; } 50% { transform: scale(0.8); opacity: 0.12; } }
+@keyframes char-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.12); } }
+@keyframes char-jump { 0% { transform: translateY(0) scale(1.12, 0.88); } 40% { transform: translateY(-20px) scale(0.92, 1.08); } 70% { transform: translateY(0) scale(1.06, 0.94); } 100% { transform: none; } }
+@keyframes char-shake { 0%, 100% { transform: none; } 20% { transform: translateX(-5px) rotate(-4deg); } 40% { transform: translateX(5px) rotate(4deg); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
+
+/* ── Telly ─────────────────────────────────────────────────────────────── */
+.telly { overflow: visible; }
+.telly .telly-body { transform-box: view-box; transform-origin: 85px 180px; animation: telly-bounce 2.8s ease-in-out infinite; }
+.telly .telly-wave { transform-box: view-box; transform-origin: 146px 100px; animation: telly-wave 1.4s ease-in-out infinite; }
+.telly .telly-bulb { animation: bulb-blink 1.6s steps(2) infinite; }
+.telly .telly-bulb-b { animation-delay: 0.8s; }
+@keyframes telly-bounce { 0%, 100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(-3px) rotate(-1deg); } 75% { transform: translateY(-3px) rotate(1deg); } }
+@keyframes telly-wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-16deg); } }
+@keyframes bulb-blink { 50% { filter: brightness(1.35); } }
+
+/* ── Backdrops ─────────────────────────────────────────────────────────── */
+.backdrop { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: var(--bg-deep); pointer-events: none; }
+.backdrop.is-fixed { position: fixed; }
+.backdrop svg { width: 100%; height: 100%; }
+.backdrop-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+.game-art-image { object-fit: cover; }
+.backdrop * { transform-box: view-box; }
+.bd-beam { animation: bd-sway 9s ease-in-out infinite alternate; }
+.bd-twinkle { transform-box: fill-box; transform-origin: center; animation: bd-twinkle 3.6s ease-in-out infinite; }
+.bd-bulb { animation: bd-bulb 1s steps(1) infinite; }
+.bd-grid { animation: bd-grid 2.4s linear infinite; }
+.bd-drift { animation: bd-drift 38s ease-in-out infinite alternate; }
+.bd-drift-b { animation-duration: 52s; animation-delay: -12s; }
+.bd-drift-c { animation-duration: 44s; animation-delay: -24s; }
+.bd-spin-slow { animation: spin 60s linear infinite; }
+.bd-bat-path { animation: bd-bat-fly 14s ease-in-out infinite alternate; }
+.bd-bat { transform-box: fill-box; transform-origin: center; animation: bd-flap 0.35s ease-in-out infinite alternate; }
+.bd-flicker { animation: bd-flicker 2.2s steps(3) infinite; }
+.bd-float { animation: bd-float 9s ease-in-out infinite alternate; }
+.bd-float-b { animation-duration: 7s; animation-delay: -3s; }
+.bd-shooting { opacity: 0; animation: bd-shoot 7s ease-in infinite; }
+
+@keyframes bd-sway { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
+@keyframes bd-twinkle { 0%, 100% { opacity: 0.35; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }
+@keyframes bd-bulb { 50% { fill: #fff6c4; } }
+@keyframes bd-grid { from { transform: translateY(0); } to { transform: translateY(42px); } }
+@keyframes bd-drift { from { transform: translateX(-60px); } to { transform: translateX(120px); } }
+@keyframes bd-bat-fly { from { transform: translate(-80px, 20px); } to { transform: translate(140px, -40px); } }
+@keyframes bd-flap { from { transform: scaleY(1); } to { transform: scaleY(0.45); } }
+@keyframes bd-flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+@keyframes bd-float { from { transform: translateY(-10px); } to { transform: translateY(14px); } }
+@keyframes bd-shoot { 0%, 80% { opacity: 0; transform: translate(0, 0); } 84% { opacity: 1; } 100% { opacity: 0; transform: translate(-360px, 160px); } }
+
+/* ── Game art ──────────────────────────────────────────────────────────── */
+.game-art { width: 100%; height: 100%; display: block; }
+.game-art .art-flame { transform-box: fill-box; transform-origin: 50% 0; animation: art-flame 0.18s ease-in-out infinite alternate; }
+.game-art .art-spark { transform-box: fill-box; transform-origin: center; animation: spin 1.4s linear infinite; }
+@keyframes art-flame { to { transform: scaleY(1.25); } }

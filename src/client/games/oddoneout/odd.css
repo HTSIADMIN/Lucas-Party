@@ -1,0 +1,32 @@
+.odd-stage { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.6em; align-items: center; min-height: 0; }
+.odd-topic { padding: 1em; border-radius: 1em; border-width: 0.18em; box-shadow: 0 0.3em 0 var(--outline); display: grid; gap: 0.7em; }
+.odd-topic-name { font-family: var(--font-display); font-size: 2.2em; text-align: center; }
+.odd-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.45em; }
+.odd-cell {
+  min-height: 3.2em;
+  display: grid;
+  place-items: center;
+  padding: 0.3em;
+  text-align: center;
+  border-radius: 0.5em;
+  border: 0.12em solid var(--outline);
+  background: #fff;
+  font-weight: 800;
+  font-size: 1.1em;
+  line-height: 1.05;
+}
+.odd-cell.is-secret { background: var(--accent); animation: pop-in 0.6s var(--ease-pop); box-shadow: 0 0 0 0.2em var(--focus); }
+.odd-cell.is-guess { background: color-mix(in srgb, var(--danger) 35%, #fff); }
+.odd-cell.is-guess.is-secret { background: var(--success); }
+.odd-side { display: grid; gap: 1em; align-content: center; justify-items: center; text-align: center; }
+.odd-clues { display: grid; grid-template-columns: repeat(auto-fill, minmax(10em, 1fr)); gap: 0.8em; width: 100%; }
+.odd-clue { display: grid; justify-items: center; gap: 0.3em; padding: 0.6em; border-radius: 0.9em; position: relative; }
+.odd-clue.is-turn { background: color-mix(in srgb, var(--accent) 30%, transparent); box-shadow: 0 0 0 0.16em var(--accent); }
+.odd-clue .bubble { font-size: 1.2em; padding: 0.35em 0.7em; min-width: 5em; text-align: center; }
+.odd-clue .bubble.is-empty { color: var(--text-muted); font-style: italic; }
+.odd-votes { display: flex; flex-wrap: wrap; gap: 1.2em; justify-content: center; }
+.odd-suspect { display: grid; justify-items: center; gap: 0.3em; padding: 0.6em; border-radius: 1em; }
+.odd-suspect.is-accused { background: color-mix(in srgb, var(--danger) 35%, transparent); box-shadow: 0 0 0 0.18em var(--danger); }
+.odd-suspect-votes { display: flex; gap: 0.15em; min-height: 2em; }
+.odd-banner { font-family: var(--font-display); font-size: 3.6em; color: var(--accent); -webkit-text-stroke: 0.08em var(--ink-900); paint-order: stroke fill; text-align: center; line-height: 1.05; }
+.odd-faker-hat { position: absolute; top: -0.8em; font-size: 2em; }

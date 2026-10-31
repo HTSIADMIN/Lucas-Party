@@ -1,0 +1,150 @@
+/* ── TV screen ─────────────────────────────────────────────────────────────
+   Designed for a 16:9 screen read from the couch. Everything inside .tv is
+   sized in em, and .tv's font-size tracks the viewport, so the layout scales
+   from a 720p laptop to a 4K TV without breakpoints. */
+.tv {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  font-size: clamp(10px, min(1.25vw, 2.25vh), 36px);
+  color: var(--on-bg);
+  isolation: isolate;
+}
+.tv-top { display: flex; align-items: center; gap: 1em; padding: 0.8em 1.4em 0; }
+.tv-top .logo-word { font-size: 1.5em; }
+.tv-top-join { display: flex; align-items: center; gap: 0.6em; font-weight: 700; font-size: 1.05em; }
+.tv-top-code { font-family: var(--font-display); font-size: 1.6em; letter-spacing: 0.08em; padding: 0.05em 0.5em; border-radius: 0.4em; background: var(--surface); color: var(--text); border: 0.15em solid var(--outline); }
+.tv-stage { position: relative; min-height: 0; padding: 0.6em 2.2em; display: grid; }
+.tv-title {
+  font-family: var(--font-display);
+  font-size: 4.2em;
+  text-align: center;
+  color: #fff;
+  -webkit-text-stroke: 0.16em var(--ink-900);
+  paint-order: stroke fill;
+  text-shadow: 0 0.1em 0 var(--ink-900);
+  line-height: 1;
+}
+.tv-sub { text-align: center; font-size: 1.6em; font-weight: 700; color: var(--on-bg); text-shadow: 0 0.08em 0 rgba(0, 0, 0, 0.35); }
+.tv-center { display: grid; place-content: center; justify-items: center; gap: 1.2em; text-align: center; }
+.tv-rules { font-size: 1.25em; max-width: 34em; text-align: left; padding: 1em 1.4em; border-radius: 1em; border-width: 0.16em; box-shadow: 0 0.25em 0 var(--outline); }
+.tv-rules ol { margin: 0 0 0.6em; padding-left: 1.3em; display: grid; gap: 0.25em; font-weight: 700; }
+.tv-pill { font-family: var(--font-display); font-size: 1.3em; padding: 0.2em 0.8em; border-radius: 1em; background: var(--accent); color: var(--ink-900); border: 0.14em solid var(--outline); white-space: nowrap; }
+
+/* Player strip */
+.tv-players { display: flex; justify-content: center; gap: 0.8em; padding: 0.4em 1em 0.9em; }
+.tv-player { display: grid; justify-items: center; gap: 0.15em; min-width: 6.5em; position: relative; }
+.tv-player-name { font-weight: 800; font-size: 0.95em; max-width: 8em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-shadow: 0 0.1em 0 rgba(0, 0, 0, 0.45); }
+.tv-player-score { font-family: var(--font-display); font-size: 1.05em; padding: 0 0.5em; border-radius: 1em; background: var(--surface); color: var(--text); border: 0.12em solid var(--outline); }
+.tv-player.is-away { opacity: 0.45; }
+.tv-player.is-out .tv-player-name::after { content: " · next game"; font-weight: 600; opacity: 0.8; }
+.tv-crown { position: absolute; top: -0.6em; right: 0.9em; font-size: 1.2em; }
+
+/* Lobby */
+.tv-lobby { display: grid; grid-template-columns: 1.05fr 1fr; grid-template-rows: 1fr auto; gap: 1.4em 2em; align-items: center; padding-bottom: 1em; }
+.tv-join { display: grid; grid-template-columns: 1fr auto; gap: 1.2em; align-items: center; padding: 1.4em 1.6em; border-radius: 1.2em; border-width: 0.18em; box-shadow: 0 0.3em 0 var(--outline); transform: rotate(-1.2deg); }
+.tv-join-steps { display: grid; gap: 0.35em; }
+.tv-join-label { font-weight: 700; font-size: 1.25em; color: var(--text-muted); }
+.tv-join-url { font-family: var(--font-display); font-size: 2.3em; line-height: 1.05; word-break: break-all; color: var(--primary-strong); }
+.tv-code { display: flex; gap: 0.35em; margin-top: 0.2em; }
+.tv-code span {
+  display: grid;
+  place-items: center;
+  width: 1.25em;
+  height: 1.35em;
+  font-family: var(--font-display);
+  font-size: 4.2em;
+  line-height: 1;
+  background: var(--accent);
+  color: var(--ink-900);
+  border: 0.05em solid var(--outline);
+  border-radius: 0.2em;
+  box-shadow: 0 0.07em 0 var(--outline);
+}
+.tv-code span:nth-child(odd) { transform: rotate(-3deg); }
+.tv-code span:nth-child(even) { transform: rotate(3deg); background: var(--primary); color: #fff; }
+.tv-qr { display: grid; justify-items: center; gap: 0.4em; font-weight: 700; color: var(--text-muted); }
+.tv-qr .qr { width: 11em; height: 11em; border: 0.18em solid var(--outline); border-radius: 0.6em; }
+
+.tv-seats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9em; }
+.tv-seat {
+  aspect-ratio: 1 / 1.08;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.3em;
+  border-radius: 1em;
+  border: 0.16em dashed color-mix(in srgb, var(--on-bg) 40%, transparent);
+  color: var(--on-bg-muted);
+  font-weight: 700;
+}
+.tv-seat.is-filled { border-style: solid; border-color: var(--outline); background: var(--surface); color: var(--text); box-shadow: 0 0.25em 0 var(--outline); animation: pop-in 0.5s var(--ease-pop); }
+.tv-seat.is-away { opacity: 0.55; }
+.tv-seat-name { font-family: var(--font-display); font-size: 1.25em; max-width: 90%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tv-seat-num { font-family: var(--font-display); font-size: 2.2em; opacity: 0.5; }
+.tv-seat { position: relative; }
+.tv-seat .badge { position: absolute; top: 0.6em; right: 0.6em; font-size: 0.7em; }
+
+.tv-lobby-status { grid-column: 1 / -1; display: flex; align-items: flex-end; gap: 1.2em; }
+.tv-lobby-status .bubble { font-size: 1.45em; max-width: 26em; margin-bottom: 3.4em; }
+.tv-up-next { margin-left: auto; display: flex; gap: 1em; align-items: center; padding: 0.8em; border-radius: 1em; border-width: 0.16em; box-shadow: 0 0.25em 0 var(--outline); max-width: 30em; }
+.tv-up-next-art { width: 11em; aspect-ratio: 16 / 10; border-radius: 0.6em; overflow: hidden; border: 0.14em solid var(--outline); flex: none; }
+.tv-up-next h3 { font-size: 1.9em; }
+
+/* Overlays */
+.tv-pause { position: absolute; inset: 0; z-index: 30; display: grid; place-content: center; justify-items: center; gap: 1em; background: rgba(11, 5, 32, 0.72); }
+.tv-sound { font-size: 0.85em; }
+.tv-banner { position: absolute; left: 50%; top: 0.8em; transform: translateX(-50%); z-index: 36; }
+.tv-toasts { position: absolute; left: 50%; top: 4.2em; transform: translateX(-50%); z-index: 34; display: grid; gap: 0.4em; justify-items: center; pointer-events: none; }
+.tv-toasts .toast { font-size: 1.15em; }
+.tv-fullscreen { opacity: 0.25; transition: opacity var(--dur-2); }
+.tv:hover .tv-fullscreen { opacity: 1; }
+.tv-top-right { margin-left: auto; display: flex; align-items: center; gap: 0.8em; }
+
+/* Shared game pieces on the TV */
+.token { position: relative; display: grid; justify-items: center; gap: 0.2em; }
+.token.is-away { opacity: 0.5; }
+.token-name { font-weight: 800; font-size: 1em; padding: 0.05em 0.6em; border-radius: 1em; background: var(--surface); color: var(--text); border: 0.12em solid var(--outline); white-space: nowrap; max-width: 9em; overflow: hidden; text-overflow: ellipsis; }
+.token-check { position: absolute; top: -0.2em; right: -0.2em; width: 1.6em; height: 1.6em; display: grid; place-items: center; border-radius: 50%; background: var(--surface); color: var(--text); border: 0.12em solid var(--outline); font-weight: 800; }
+.token-check.is-done { background: var(--success); animation: pop-in 0.4s var(--ease-pop); }
+.progress-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2em; }
+
+/* Explicit width: inside a centred grid a percentage width shrink-wraps and the bar column collapses. */
+.scoreboard { width: 52em; max-width: calc(100vw - 4em); justify-self: center; padding: 1.2em 1.6em; border-radius: 1.2em; border-width: 0.18em; box-shadow: 0 0.3em 0 var(--outline); }
+.scoreboard-title { font-size: 2.4em; margin-bottom: 0.4em; text-align: center; }
+.scoreboard-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45em; }
+.scoreboard-row { display: grid; grid-template-columns: 2em auto 9em 1fr auto 5em; gap: 0.8em; align-items: center; font-size: 1.15em; }
+.scoreboard-rank { font-family: var(--font-display); font-size: 1.6em; text-align: center; }
+.scoreboard-name { font-weight: 800; font-size: 1.15em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.scoreboard-bar { height: 1em; border-radius: 1em; background: var(--surface-3); border: 0.12em solid var(--outline); overflow: hidden; }
+.scoreboard-bar span { display: block; height: 100%; border-radius: 1em; animation: bar-grow 0.9s var(--ease-out) both; transform-origin: left; }
+.scoreboard-score { font-family: var(--font-display); font-size: 1.35em; text-align: right; }
+.scoreboard-score small { font-size: 0.6em; opacity: 0.6; }
+.scoreboard-gain { font-family: var(--font-display); color: var(--mint-700); font-size: 1.2em; }
+.scoreboard-gain.is-loss { color: var(--cherry-700); }
+@keyframes bar-grow { from { transform: scaleX(0); } }
+
+.podium-wrap { position: relative; display: grid; justify-items: center; align-content: center; gap: 1em; }
+.podium { display: flex; align-items: flex-end; gap: 1.4em; }
+.podium-col { display: grid; justify-items: center; gap: 0.3em; }
+.podium-name { font-family: var(--font-display); font-size: 1.6em; text-shadow: 0 0.08em 0 var(--ink-900); }
+.podium-block { width: 9em; display: grid; justify-items: center; align-content: start; padding-top: 0.5em; background: var(--surface); color: var(--text); border: 0.18em solid var(--outline); border-radius: 0.8em 0.8em 0 0; box-shadow: 0 0.3em 0 var(--outline); }
+.place-1 .podium-block { height: 11em; background: var(--accent); }
+.place-2 .podium-block { height: 8em; }
+.place-3 .podium-block { height: 6em; background: var(--surface-3); }
+.podium-place { font-family: var(--font-display); font-size: 3.2em; line-height: 1; }
+.podium-score { font-weight: 800; font-size: 1.1em; }
+.podium-rest { display: flex; gap: 0.6em; flex-wrap: wrap; justify-content: center; font-size: 1.1em; }
+
+.confetti { position: absolute; inset: -10% 0 0; pointer-events: none; overflow: hidden; z-index: -1; }
+.confetti span { position: absolute; top: -5%; width: 0.7em; height: 1.1em; border-radius: 0.15em; border: 0.08em solid var(--ink-900); animation: confetti-fall linear infinite; }
+@keyframes confetti-fall { to { top: 110%; transform: rotate(720deg) translateX(3em); } }
+
+.tv-loading { position: fixed; inset: 0; display: grid; place-content: center; justify-items: center; gap: 1em; font-size: clamp(14px, 1.4vw, 28px); color: var(--on-bg); text-align: center; }
+
+@media (max-aspect-ratio: 4/3) {
+  .tv-lobby { grid-template-columns: 1fr; }
+  .tv-lobby-status .bubble { margin-bottom: 0; }
+}

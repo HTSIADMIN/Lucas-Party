@@ -1,0 +1,66 @@
+/* Themes re-point backdrop + accent tokens. Card surfaces stay cream in every
+   theme so text contrast never changes; only the world around them does. */
+
+[data-theme="showtime"] {
+  --bg: #1f1250;
+  --bg-deep: #0f0730;
+  --backdrop-a: #4a24a8;
+  --backdrop-b: #12073a;
+  --primary: var(--pink-500);
+  --primary-strong: var(--pink-700);
+  --accent: var(--sun-500);
+}
+
+[data-theme="arcade"] {
+  --bg: #0b0420;
+  --bg-deep: #05020f;
+  --backdrop-a: #2a0a55;
+  --backdrop-b: #05020f;
+  --primary: #ff3dcb;
+  --primary-strong: #c41a98;
+  --accent: #21e6ff;
+  --on-accent: var(--ink-900);
+  --side-a: #ff3dcb;
+  --side-b: #21e6ff;
+}
+
+[data-theme="picnic"] {
+  --bg: #7fd3ff;
+  --bg-deep: #4fb4f0;
+  --backdrop-a: #9fe2ff;
+  --backdrop-b: #5cc0f5;
+  --on-bg: var(--ink-900);
+  --on-bg-muted: rgba(27, 16, 51, 0.72);
+  --primary: #ff5a5f;
+  --primary-strong: #d63a47;
+  --accent: var(--sun-500);
+  --side-a: #ff5a5f;
+  --side-b: #4f7bff;
+}
+
+[data-theme="spooky"] {
+  --bg: #1b0f2e;
+  --bg-deep: #0c0618;
+  --backdrop-a: #3a1d63;
+  --backdrop-b: #0c0618;
+  --primary: var(--tangerine-500);
+  --primary-strong: #d9621a;
+  --on-primary: var(--ink-900);
+  --accent: #b8f25c;
+  --on-accent: var(--ink-900);
+  --side-a: var(--tangerine-500);
+  --side-b: #b8f25c;
+}
+
+[data-theme="cosmos"] {
+  --bg: #071233;
+  --bg-deep: #030820;
+  --backdrop-a: #17306e;
+  --backdrop-b: #030820;
+  --primary: var(--grape-500);
+  --primary-strong: var(--grape-700);
+  --accent: #3fe0ff;
+  --on-accent: var(--ink-900);
+  --side-a: var(--grape-500);
+  --side-b: #3fe0ff;
+}
