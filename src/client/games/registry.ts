@@ -47,4 +47,28 @@ export const GAME_VIEWS: Record<GameId, { Tv: Lazy<TvGameProps<any>>; Phone: Laz
     Tv: lazy(() => import("./dial/DialTv")),
     Phone: lazy(() => import("./dial/DialPhone")),
   },
+  liarsdice: {
+    Tv: lazy(() => import("./liarsdice/LiarsDiceTv")),
+    Phone: lazy(() => import("./liarsdice/LiarsDicePhone")),
+  },
+  spygrid: {
+    Tv: lazy(() => import("./spygrid/SpyGridTv")),
+    Phone: lazy(() => import("./spygrid/SpyGridPhone")),
+  },
+  oneclue: {
+    Tv: lazy(() => import("./oneclue/OneClueTv")),
+    Phone: lazy(() => import("./oneclue/OneCluePhone")),
+  },
+  blackjack: {
+    Tv: lazy(() => import("./blackjack/BlackjackTv")),
+    Phone: lazy(() => import("./blackjack/BlackjackPhone")),
+  },
+  shadespotter: {
+    Tv: lazy(() => import("./shadespotter/ShadeSpotterTv")),
+    Phone: lazy(() => import("./shadespotter/ShadeSpotterPhone")),
+  },
+  showdown: {
+    Tv: lazy(() => import("./showdown/ShowdownTv")),
+    Phone: lazy(() => import("./showdown/ShowdownPhone")),
+  },
 };

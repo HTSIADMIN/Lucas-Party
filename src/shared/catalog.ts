@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -95,23 +95,62 @@ export const GAME_CATALOG: GameMeta[] = [
     inspiredBy: "Wavelength",
   },
 
-  // ── Coming soon (roadmap order, easiest first) ─────────────────────────
   {
-    id: "spygrid", name: "Spy Grid", status: "soon",
+    id: "liarsdice", name: "Liar's Dice", status: "live",
+    tagline: "Your dice are secret. Your bluff isn't.",
+    description: "Everyone rolls hidden dice on their phone. Take turns raising the bid on how many of a face are on the whole table — or call LIAR! Whoever's wrong loses a die. Last player with dice wins.",
+    players: [2, 8], minutes: [10, 20], tags: ["bluffing", "casino"], accent: "#FFD23F",
+    howTo: ["Peek at your secret dice.", "Raise the bid: more dice, or a higher face.", "Call LIAR! when you don't buy it."],
+    options: [{ key: "dice", label: "Dice each", default: 5, choices: [{ value: 3, label: "3" }, { value: 4, label: "4" }, { value: 5, label: "5" }] }],
+    inspiredBy: "Traditional Liar's Dice / Perudo",
+  },
+  {
+    id: "spygrid", name: "Spy Grid", status: "live",
     tagline: "One word. Many meanings. Two teams.",
-    description: "Two teams race to find their agents on a 5×5 grid. Spymasters see the secret key on their phones and give one-word clues.",
+    description: "Two teams race to find their agents on a 5×5 grid of words. Spymasters see the secret key on their phones and give one-word clues; teammates vote on which words to flip. Touch the assassin and it's game over.",
     players: [4, 8], minutes: [15, 20], tags: ["teams", "words", "deduction"], accent: "#4F7BFF",
-    howTo: ["Spymasters see the key on their phone.", "Give a one-word clue and a number.", "Teammates tap their guesses."],
+    howTo: ["Spymasters see the key on their phone.", "Give a one-word clue and a number.", "Teammates vote on which words to flip."],
+    options: [{ key: "rounds", label: "Boards", default: 2, choices: [{ value: 1, label: "1" }, { value: 2, label: "2" }, { value: 3, label: "3" }] }],
     inspiredBy: "Codenames",
   },
   {
-    id: "liarsdice", name: "Liar's Dice", status: "soon",
-    tagline: "Your dice are secret. Your bluff isn't.",
-    description: "Everyone rolls hidden dice on their phone. Raise the bid on the TV or call a liar — the loser loses a die.",
-    players: [2, 8], minutes: [10, 20], tags: ["bluffing", "casino"], accent: "#FFD23F",
-    howTo: ["Roll your secret dice.", "Bid on how many of a face are on the table.", "Raise or call LIAR!"],
-    inspiredBy: "Traditional Liar's Dice / Perudo",
+    id: "oneclue", name: "One Clue", status: "live",
+    tagline: "Help your friend guess — without doubling up.",
+    description: "One player guesses a mystery word while everyone else writes a one-word clue on their phone. Matching clues cancel each other out, so be clever, not obvious. Everyone with a surviving clue scores when the guesser nails it.",
+    players: [3, 8], minutes: [10, 15], tags: ["co-op", "words"], accent: "#FFC93C",
+    howTo: ["Write a one-word clue for the mystery word.", "Matching clues get cancelled.", "The guesser gets one shot."],
+    options: [{ key: "rounds", label: "Rounds", default: 0, choices: [{ value: 6, label: "6" }, { value: 10, label: "10" }, { value: 0, label: "Everyone" }] }],
+    inspiredBy: "Just One",
   },
+  {
+    id: "blackjack", name: "Blackjack Bash", status: "live",
+    tagline: "Everyone versus the dealer.",
+    description: "The whole room sits at one table against the TV's dealer. Bet your party chips, then hit, stand or double on your phone — everyone plays at once. Most chips after the last hand wins.",
+    players: [1, 8], minutes: [10, 20], tags: ["casino"], accent: "#FF5A5F",
+    howTo: ["Bet your party chips.", "Hit, stand or double on your phone.", "Beat the dealer, then beat your friends."],
+    options: [{ key: "rounds", label: "Hands", default: 8, choices: [{ value: 5, label: "5" }, { value: 8, label: "8" }, { value: 12, label: "12" }] }],
+    inspiredBy: "Our multiplayer blackjack table",
+  },
+  {
+    id: "shadespotter", name: "Shade Spotter", status: "live",
+    tagline: "Is that teal or turquoise?",
+    description: "A giant grid of colours fills the TV. The cue-giver sees a secret shade and describes it in one word, then two. Everyone taps the shade they think it is — the closer you land, the more you score.",
+    players: [3, 8], minutes: [10, 15], tags: ["words", "voting"], accent: "#FF6FCB",
+    howTo: ["The cue-giver sees a secret colour.", "They give a one-word cue, then a two-word cue.", "Tap the shade you think it is. Closer scores more."],
+    options: [{ key: "rounds", label: "Rounds", default: 0, choices: [{ value: 4, label: "4" }, { value: 6, label: "6" }, { value: 0, label: "Everyone" }] }],
+    inspiredBy: "Hues and Cues",
+  },
+  {
+    id: "showdown", name: "Saloon Showdown", status: "live",
+    tagline: "Steady… steady… DRAW!",
+    description: "Reflex duels for the whole room. Hold your thumb down, wait for DRAW, and tap faster than everyone else — flinch early and you're out of the round. Some rounds are Stop the Clock: stop a hidden timer as close to the target as you can.",
+    players: [2, 8], minutes: [5, 10], tags: ["reflex"], accent: "#FF9A3C",
+    howTo: ["Hold your thumb on the button.", "Tap the instant DRAW! flashes — not before.", "Fastest draw (or closest clock) scores."],
+    options: [{ key: "rounds", label: "Rounds", default: 8, choices: [{ value: 6, label: "6" }, { value: 8, label: "8" }, { value: 12, label: "12" }] }],
+    inspiredBy: "Our Saloon Showdown + Stop the Clock minigame ideas",
+  },
+
+  // ── Coming soon (roadmap order, easiest first) ─────────────────────────
   {
     id: "holdem", name: "Hold'em Night", status: "soon",
     tagline: "The TV is the table. Your phone is your hand.",
@@ -119,14 +158,6 @@ export const GAME_CATALOG: GameMeta[] = [
     players: [2, 8], minutes: [20, 45], tags: ["casino", "bluffing"], accent: "#45D483",
     howTo: ["Peek at your two cards on your phone.", "Check, bet, raise or fold.", "Last stack standing wins."],
     inspiredBy: "Our poker table, rebuilt for phones + TV",
-  },
-  {
-    id: "blackjack", name: "Blackjack Bash", status: "soon",
-    tagline: "Everyone versus the dealer.",
-    description: "A full table against a cheeky dealer, with side bets, sabotage cards, and a chip race to the final hand.",
-    players: [1, 8], minutes: [10, 20], tags: ["casino"], accent: "#FF5A5F",
-    howTo: ["Bet your party chips.", "Hit, stand or double on your phone.", "Beat the dealer, then beat your friends."],
-    inspiredBy: "Our multiplayer blackjack table",
   },
   {
     id: "fibfactory", name: "Fib Factory", status: "soon",
@@ -151,22 +182,6 @@ export const GAME_CATALOG: GameMeta[] = [
     players: [3, 8], minutes: [10, 15], tags: ["drawing", "writing"], accent: "#2ED3D3",
     howTo: ["Write a silly sentence.", "Draw the sentence you're handed — then describe the drawing.", "Watch the chains replay on the TV."],
     inspiredBy: "Telestrations / Gartic Phone",
-  },
-  {
-    id: "oneclue", name: "One Clue", status: "soon",
-    tagline: "Help your friend guess — without doubling up.",
-    description: "Everyone writes one clue for the guesser's mystery word. Duplicate clues cancel out, so be clever, not obvious.",
-    players: [3, 8], minutes: [10, 15], tags: ["co-op", "words"], accent: "#FFD23F",
-    howTo: ["Write a one-word clue for the mystery word.", "Matching clues get crossed out.", "The guesser gets one shot."],
-    inspiredBy: "Just One",
-  },
-  {
-    id: "shadespotter", name: "Shade Spotter", status: "soon",
-    tagline: "Is that teal or turquoise?",
-    description: "A giant colour grid fills the TV. One player describes a secret shade in a word or two and everyone else tries to land on it.",
-    players: [3, 8], minutes: [10, 15], tags: ["words", "voting"], accent: "#FF6FCB",
-    howTo: ["The cue-giver sees a secret colour.", "They give a one- or two-word cue.", "Everyone taps the shade they think it is."],
-    inspiredBy: "Hues and Cues",
   },
   {
     id: "wordbomb", name: "Word Bomb", status: "soon",
