@@ -1,8 +1,8 @@
 // The game catalog shown on the front page, the /games page, and the host's
-// game picker. `status: "live"` games have a server definition in
-// apps/server/src/games and TV/phone views in apps/web/src/games.
+// game picker. `status: "live"` games have an engine in src/shared/engine/games
+// and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -67,32 +67,35 @@ export const GAME_CATALOG: GameMeta[] = [
     options: [{ key: "rounds", label: "Rounds", default: 4, choices: [{ value: 3, label: "3" }, { value: 4, label: "4" }, { value: 6, label: "6" }] }],
     inspiredBy: "The Chameleon / Spyfall hidden-word bluffing",
   },
-
-  // ── Coming soon (roadmap order, easiest first) ─────────────────────────
   {
-    id: "greatminds", name: "Great Minds", status: "soon",
+    id: "greatminds", name: "Great Minds", status: "live",
     tagline: "Think like the herd.",
-    description: "Answer simple questions and score only if you match the most popular answer. The odd one out gets the dunce cap.",
+    description: "Everyone answers the same simple question. Match the biggest group to score — but if you're the only one with a weird answer, you get the Dunce Cap. Still wearing it at the end? That costs you.",
     players: [3, 8], minutes: [8, 12], tags: ["writing", "voting"], accent: "#45D483",
-    howTo: ["Read the question on the TV.", "Type the answer you think most people will give.", "Match the majority to score."],
+    howTo: ["Read the question on the TV.", "Type the answer you think most people will give.", "Match the biggest group to score. Dodge the Dunce Cap."],
+    options: [{ key: "rounds", label: "Questions", default: 8, choices: [{ value: 6, label: "6" }, { value: 8, label: "8" }, { value: 10, label: "10" }] }],
     inspiredBy: "Herd Mentality",
   },
   {
-    id: "mostlikely", name: "Most Likely To…", status: "soon",
+    id: "mostlikely", name: "Most Likely To…", status: "live",
     tagline: "Who in this room would…?",
-    description: "Vote for the friend who best fits each prompt, then predict how the room voted. Brutally honest, endlessly replayable.",
+    description: "Vote for the friend who best fits each prompt. Score when you side with the room, collect embarrassing titles, and sit through the awards ceremony at the end.",
     players: [3, 8], minutes: [8, 12], tags: ["voting"], accent: "#FF6FCB",
-    howTo: ["See the prompt on the TV.", "Vote for a player on your phone.", "Score for siding with the room."],
+    howTo: ["See the prompt on the TV.", "Vote for a friend on your phone.", "Score for siding with the room."],
+    options: [{ key: "rounds", label: "Prompts", default: 8, choices: [{ value: 6, label: "6" }, { value: 8, label: "8" }, { value: 10, label: "10" }] }],
     inspiredBy: "Classic icebreaker voting",
   },
   {
-    id: "dial", name: "Dial It In", status: "soon",
+    id: "dial", name: "Dial It In", status: "live",
     tagline: "Hot or cold? Read the room.",
-    description: "One player sees a secret spot on a spectrum and gives a clue. Everyone else drags the dial on their phones to find it.",
-    players: [2, 8], minutes: [10, 15], tags: ["teams", "co-op"], accent: "#2ED3D3",
-    howTo: ["The psychic gets a secret target.", "They give a one-line clue.", "Everyone else dials in a guess."],
+    description: "One player — the psychic — sees a secret spot on a spectrum like Cold ↔ Hot and gives a one-line clue. Everyone else drags the dial on their phone to find it. Closer is better, and the psychic scores when the room nails it.",
+    players: [2, 8], minutes: [10, 15], tags: ["words", "co-op"], accent: "#2ED3D3",
+    howTo: ["The psychic sees a secret target on the dial.", "They give a one-line clue.", "Everyone else dials in a guess. Bullseye!"],
+    options: [{ key: "rounds", label: "Rounds", default: 0, choices: [{ value: 4, label: "4" }, { value: 6, label: "6" }, { value: 0, label: "Everyone" }] }],
     inspiredBy: "Wavelength",
   },
+
+  // ── Coming soon (roadmap order, easiest first) ─────────────────────────
   {
     id: "spygrid", name: "Spy Grid", status: "soon",
     tagline: "One word. Many meanings. Two teams.",

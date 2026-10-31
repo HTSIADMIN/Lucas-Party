@@ -1,0 +1,19 @@
+/* Most Likely To… — TV */
+.ml-ask { gap: 0.9em; }
+.ml-lead { font-family: var(--font-display); font-size: 2em; color: var(--on-bg); -webkit-text-stroke: 0.06em var(--ink-900); paint-order: stroke fill; text-align: center; }
+.ml-prompt { font-family: var(--font-display); font-size: 3.2em; line-height: 1.1; text-align: center; max-width: 17em; padding: 0.5em 0.9em; border-radius: 0.6em; border-width: 0.12em; box-shadow: 0 0.12em 0 var(--outline); }
+.ml-reveal { gap: 0.8em; }
+.ml-picks { display: flex; flex-wrap: wrap; gap: 1.2em; justify-content: center; align-items: flex-end; }
+.ml-pick { position: relative; display: grid; justify-items: center; gap: 0.3em; padding: 0.7em 0.6em 0.5em; border-radius: 1em; }
+.ml-pick.is-top { background: color-mix(in srgb, var(--accent) 35%, transparent); box-shadow: 0 0 0 0.2em var(--accent); }
+.ml-pick-votes { display: flex; flex-wrap: wrap; gap: 0.15em; justify-content: center; max-width: 9em; min-height: 2em; }
+.ml-sash { position: absolute; top: -0.9em; font-family: var(--font-display); font-size: 1.1em; padding: 0.15em 0.7em; border-radius: 1em; background: var(--accent); color: var(--ink-900); border: 0.12em solid var(--outline); white-space: nowrap; transform: rotate(-4deg); animation: pop-in 0.5s var(--ease-pop) both; }
+.ml-awards { display: grid; gap: 1em; justify-items: center; align-content: start; }
+.ml-award-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9em; width: min(64em, 100%); }
+.ml-award { display: flex; align-items: center; gap: 0.8em; padding: 0.8em 1em; border-radius: 1em; border-width: 0.14em; box-shadow: 0 0.2em 0 var(--outline); text-align: left; }
+.ml-award-body { display: grid; gap: 0.2em; min-width: 0; }
+.ml-award-name { font-family: var(--font-display); font-size: 1.6em; }
+.ml-award-titles { margin: 0; padding-left: 1.1em; font-weight: 700; font-size: 1.05em; line-height: 1.25; }
+
+/* Most Likely To… — phone */
+.ml-phone-titles { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; font-weight: 700; font-size: 1.1rem; }

@@ -28,6 +28,8 @@ export interface GameContext {
   setDeadline(ms: number | null): void;
   readonly deadline: number | null;
   isConnected(playerId: string): boolean;
+  /** The room owner's seat — for host-only in-game actions (e.g. merging answers). */
+  isHost(playerId: string): boolean;
   emit(event: RoomEvent): void;
   /** Marks the game finished: the final podium is on screen and the host picks what's next. */
   finish(): void;

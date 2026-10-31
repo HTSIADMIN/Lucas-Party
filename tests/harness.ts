@@ -8,14 +8,15 @@ export function players(n: number): GamePlayer[] {
   return Array.from({ length: n }, (_, i) => ({ id: `p${i}`, name: `Player ${i}`, character: chars[i % 8]! }));
 }
 
-export function harness<S>(def: GameDefinition<S>, n: number, opts: { options?: Record<string, number>; random?: () => number } = {}) {
+export function harness<S>(def: GameDefinition<S>, n: number, opts: { options?: Record<string, number>; random?: () => number; familyMode?: boolean; hostId?: string } = {}) {
   let now = 1_000_000;
   let deadline: number | null = null;
   let finished = false;
   const events: RoomEvent[] = [];
   const roster = players(n);
   const connected = new Set(roster.map((p) => p.id));
-  const settings: RoomSettings = { theme: "showtime", familyMode: true, pace: "normal", gameId: def.id as GameId, gameOptions: {} };
+  const settings: RoomSettings = { theme: "showtime", familyMode: opts.familyMode ?? true, pace: "normal", gameId: def.id as GameId, gameOptions: {} };
+  const hostId = opts.hostId ?? "p0";
   const ctx: GameContext = {
     gameId: def.id,
     options: opts.options ?? {},
@@ -34,6 +35,7 @@ export function harness<S>(def: GameDefinition<S>, n: number, opts: { options?: 
       return deadline;
     },
     isConnected: (id) => connected.has(id),
+    isHost: (id) => id === hostId,
     emit: (e) => void events.push(e),
     finish: () => {
       finished = true;

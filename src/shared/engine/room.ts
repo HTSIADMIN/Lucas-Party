@@ -583,6 +583,10 @@ export class RoomHost {
         return room.paused ? (room.pausedRemaining === null ? null : Date.now() + room.pausedRemaining) : room.deadline;
       },
       isConnected: (id) => Boolean(room.seats.get(id)?.connected),
+      isHost: (id) => {
+        const ownerId = room.owner?.userId;
+        return Boolean(ownerId && room.seats.get(id)?.userId === ownerId);
+      },
       emit: (event) => {
         if (live()) room.queueEvent(event);
       },

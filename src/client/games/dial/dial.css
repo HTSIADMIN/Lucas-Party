@@ -1,0 +1,33 @@
+/* Dial It In — the dial (TV + phone) */
+.dial { display: grid; gap: 0.4em; width: 100%; }
+.dial svg { display: block; width: 100%; height: auto; overflow: visible; }
+.dial.is-live svg { touch-action: none; cursor: grab; }
+.dial.is-live svg:active { cursor: grabbing; }
+.dial-band { stroke: #1b1033; stroke-width: 1.5; }
+.dial-band-30 { fill: #ffe08a; }
+.dial-band-60 { fill: #ffb347; }
+.dial-band-100 { fill: #ff5a5f; }
+.dial-band-label { font-family: var(--font-display); font-size: 7px; fill: #1b1033; pointer-events: none; }
+.dial-needle { stroke: #1b1033; stroke-width: 5; stroke-linecap: round; }
+.dial-labels { display: flex; justify-content: space-between; gap: 1em; font-weight: 800; }
+.dial-label { max-width: 48%; line-height: 1.1; }
+.dial-label.is-left { text-align: left; color: #1d7fbf; }
+.dial-label.is-right { text-align: right; color: #d6307f; }
+
+/* TV */
+.dial-stage { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1.6em; align-items: center; min-height: 0; }
+.dial-side { display: grid; gap: 0.8em; justify-items: center; text-align: center; align-content: center; }
+.dial-tv { padding: 1em 1.2em 0.9em; border-radius: 1em; background: var(--surface); border: 0.16em solid var(--outline); box-shadow: 0 0.3em 0 var(--outline); }
+.dial-tv .dial-labels { font-family: var(--font-display); font-size: 1.6em; }
+.dial-tv.is-covered svg { filter: saturate(0.6); }
+.dial-clue { font-family: var(--font-display); font-size: 2.4em; padding: 0.35em 0.8em; max-width: 12em; overflow-wrap: anywhere; }
+.dial-clue.is-small { font-size: 1.5em; }
+.dial-legend { display: grid; gap: 0.35em; width: min(22em, 100%); }
+.dial-legend-row { display: flex; align-items: center; gap: 0.6em; padding: 0.3em 0.7em; border-radius: 0.7em; background: var(--surface); color: var(--text); border: 0.12em solid var(--outline); font-weight: 800; font-size: 1.15em; }
+.dial-legend-row.is-bullseye { background: color-mix(in srgb, #ff5a5f 30%, var(--surface)); }
+.dial-dot { width: 1em; height: 1em; border-radius: 50%; border: 0.12em solid var(--outline); flex: none; }
+
+/* Phone */
+.dial-phone-clue { text-align: center; }
+.dial-range { width: 100%; accent-color: var(--primary); }
+.dial-small { width: min(300px, 80vw); color: var(--text); background: var(--surface); border: var(--ow) solid var(--outline); border-radius: var(--r-md); padding: 10px 12px; }

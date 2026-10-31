@@ -1,0 +1,43 @@
+/* Great Minds — TV */
+.gm-ask { gap: 1em; }
+.gm-question { font-family: var(--font-display); font-size: 3.2em; line-height: 1.1; text-align: center; max-width: 18em; padding: 0.5em 0.9em; border-radius: 0.6em; border-width: 0.12em; box-shadow: 0 0.12em 0 var(--outline); }
+.gm-question.is-small { font-size: 1.8em; }
+.gm-reveal { display: grid; gap: 1em; align-content: start; justify-items: center; min-height: 0; }
+.gm-reveal-head { display: grid; gap: 0.6em; justify-items: center; }
+.gm-groups { display: flex; flex-wrap: wrap; gap: 1em; justify-content: center; align-items: flex-start; width: 100%; }
+.gm-group {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.5em;
+  min-width: 11em;
+  padding: 1.2em 1em 0.8em;
+  border-radius: 1em;
+  background: var(--surface);
+  color: var(--text);
+  border: 0.16em solid var(--outline);
+  box-shadow: 0 0.25em 0 var(--outline);
+}
+.gm-group.is-herd { background: color-mix(in srgb, var(--success) 30%, var(--surface)); box-shadow: 0 0.25em 0 var(--outline), 0 0 0 0.25em var(--success); }
+.gm-group.is-alone { opacity: 0.85; }
+.gm-ribbon { position: absolute; top: -0.9em; font-family: var(--font-display); font-size: 1.05em; padding: 0.15em 0.7em; border-radius: 1em; background: var(--success); color: var(--ink-900); border: 0.12em solid var(--outline); white-space: nowrap; animation: pop-in 0.5s var(--ease-pop) both; }
+.gm-answer { font-family: var(--font-display); font-size: 1.9em; line-height: 1.05; text-align: center; max-width: 9em; overflow-wrap: anywhere; }
+.gm-members { display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: center; }
+.gm-member { position: relative; display: grid; justify-items: center; gap: 0.2em; padding-top: 0.4em; }
+.gm-cap { position: absolute; top: -1.3em; left: 50%; transform: translateX(-50%) rotate(-14deg); z-index: 2; filter: drop-shadow(0 0.1em 0 rgba(0, 0, 0, 0.35)); }
+.gm-cap.is-new { animation: gm-cap-drop 0.9s var(--ease-pop) both; }
+.gm-alone-tag { font-weight: 800; font-size: 0.95em; color: var(--text-muted); }
+.gm-dunce-banner { display: inline-flex; align-items: center; gap: 0.4em; font-family: var(--font-display); font-size: 2em; color: #fff; -webkit-text-stroke: 0.08em var(--ink-900); paint-order: stroke fill; }
+.gm-dunce-note { display: inline-flex; align-items: center; gap: 0.4em; }
+.gm-noanswer { font-size: 1.2em; }
+@keyframes gm-cap-drop {
+  0% { opacity: 0; transform: translate(-50%, -3em) rotate(40deg) scale(1.6); }
+  70% { opacity: 1; transform: translate(-50%, 0.2em) rotate(-20deg) scale(0.95); }
+  100% { transform: translateX(-50%) rotate(-14deg); }
+}
+
+/* Great Minds — phone */
+.gm-merge-list { display: grid; gap: 8px; }
+.gm-merge-item { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: var(--r-md); border: var(--ow) solid var(--outline); background: var(--surface); color: var(--text); font-weight: 700; font-size: 1.05rem; text-align: left; cursor: pointer; }
+.gm-merge-item.is-on { background: var(--accent); box-shadow: 0 0 0 3px var(--focus); }
+.gm-phone-dunce { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 800; color: var(--on-bg); }

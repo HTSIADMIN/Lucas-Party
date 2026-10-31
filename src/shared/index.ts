@@ -9,3 +9,6 @@ export * from "./realtime";
 export * from "./games/punchline";
 export * from "./games/rocket";
 export * from "./games/oddoneout";
+export * from "./games/greatminds";
+export * from "./games/mostlikely";
+export * from "./games/dial";
