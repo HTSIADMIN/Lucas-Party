@@ -1,5 +1,5 @@
 // Generated art (e.g. from ChatGPT image generation) that replaces the built-in
-// SVG versions. Drop files into apps/web/public/art/ and list them here — see
+// SVG versions. Drop files into public/art/ and list them here — see
 // docs/design/image-prompts.md for the prompts, sizes and file names.
 //
 // Characters and Telly stay vector on purpose: they need live expressions and

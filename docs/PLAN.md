@@ -111,7 +111,7 @@ Ordered by "fun per hour of work", using the difficulty ratings in [research](re
 12. Mash Bash minigames · 13. Word Bomb · 14. Full Moon (Werewolf) · 15. Bomb Squad (Keep Talking-style)
 
 **Phase 5 — movement games** (Rapier physics in the TV, see Decision 2)
-16. Sumo Smash (push everyone off a shrinking ring) · 17. Ledge Wars (platformer knock-offs) — using the characters' movement spec in [design-system.md](design/design-system.md).
+16. Sumo Smash (push everyone off a shrinking ring) · 17. Ledge Wars (platformer knock-offs) — using the movement-ready character spec in [characters-in-motion.md](design/characters-in-motion.md).
 
 **Platform backlog:** audience mode (watchers beyond 8 vote), custom prompt packs per host, optional profanity filter, TV hand-off (move a running party to another screen), PWA install for the TV, music beds per theme, generated art via [the prompt pack](design/image-prompts.md), achievements carried over from the old site.
 

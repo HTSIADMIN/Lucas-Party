@@ -2,14 +2,16 @@
 
 Use these to make the art that's beyond hand-drawn SVG: illustrated backdrops, game key art, marketing art of the Party Crew and Telly. The in-game characters stay SVG (they need live expressions), so generated character art is for the front page, social cards, merch and loading screens.
 
+> Also see [characters-in-motion.md](characters-in-motion.md) (turnarounds, pose sheets, faces and hands for movement games) and [themes.md](themes.md) (ten themes with backdrop, wallpaper, badge and costume prompts).
+
 ## Workflow
 
 1. **Start every chat with the style block** below, then the specific prompt.
 2. **Give it a reference.** Open `/design` in the app, screenshot the character (or Telly, or a backdrop), and attach it: "Match this character's silhouette, colours and proportions exactly." That keeps generated art consistent with the in-game SVGs.
 3. **Ask for the right size.** Square 1024×1024 for characters (ask for a transparent background), landscape 1536×1024 for backdrops and key art. If the tool offers other sizes, keep the aspect ratio.
 4. **Iterate with small edits** ("same image, but make the outline thicker", "remove the text") rather than re-rolling from scratch.
-5. **Save** as PNG, convert to WebP (smaller) if you like, and drop it into `apps/web/public/art/` using the file names below.
-6. **Wire it up** in `apps/web/src/art/manifest.ts`, e.g. `backdrops: { spooky: "/art/backdrops/spooky.webp" }`. Backdrops and game art switch over instantly; everything else keeps working.
+5. **Save** as PNG, convert to WebP (smaller) if you like, and drop it into `public/art/` using the file names below.
+6. **Wire it up** in `src/client/art/manifest.ts`, e.g. `backdrops: { spooky: "/art/backdrops/spooky.webp" }`. Backdrops and game art switch over instantly; everything else keeps working.
 
 ## Style block (paste first, every time)
 

@@ -12,7 +12,7 @@ A late-night game show you play from the couch. The living version of this page 
 
 ## Tokens
 
-All tokens live in `apps/web/src/styles/tokens.css`; themes in `themes.css`.
+All tokens live in `src/client/styles/tokens.css`; themes in `themes.css`.
 
 | Group | Tokens | Notes |
 |---|---|---|
@@ -27,7 +27,7 @@ All tokens live in `apps/web/src/styles/tokens.css`; themes in `themes.css`.
 | Depth | `--sh-1/2/3`, `--sh-float`, `--bevel`, `--glow-primary/accent` | Hard offset shadows; bevel = inner top highlight + bottom shade. |
 | Motion | `--ease-pop`, `--ease-out`, `--dur-1/2/3` | Pop easing overshoots for that bouncy feel. |
 
-**Seat colours** come from `CHARACTERS` in `packages/shared/src/characters.ts`: Blip `#FF5A5F`, Tango `#FF9A3C`, Sunny `#FFD23F`, Sprout `#45D483`, Splash `#2ED3D3`, Boxy `#4F7BFF`, Wisp `#A46BFF`, Puff `#FF6FCB`.
+**Seat colours** come from `CHARACTERS` in `src/shared/characters.ts`: Blip `#FF5A5F`, Tango `#FF9A3C`, Sunny `#FFD23F`, Sprout `#45D483`, Splash `#2ED3D3`, Boxy `#4F7BFF`, Wisp `#A46BFF`, Puff `#FF6FCB`.
 
 ## Components (CSS classes in `components.css`)
 
@@ -49,7 +49,9 @@ All tokens live in `apps/web/src/styles/tokens.css`; themes in `themes.css`.
 
 ## The Party Crew
 
-Eight characters, one per seat. Hand-built SVG on a 120×120 grid (`apps/web/src/art/Character.tsx`): ink outline 4.5, one white gloss stroke, one shade stroke, small feet.
+> **v2 for movement games:** floating mitten hands, a back side, depth, squash & stretch and one shared physics body — see [characters-in-motion.md](characters-in-motion.md).
+
+Eight characters, one per seat. Hand-built SVG on a 120×120 grid (`src/client/art/Character.tsx`): ink outline 4.5, one white gloss stroke, one shade stroke, small feet.
 
 | Character | Silhouette | Personality |
 |---|---|---|
@@ -74,6 +76,8 @@ A retro CRT TV with a face on the screen, antennas with blinking bulbs, white gl
 
 ## Themes & backdrops
 
+> **Next up:** ten new themes with ChatGPT prompts (backdrop, phone wallpaper, badge, costumes, arena) — see [themes.md](themes.md). The five below are placeholders until that art lands.
+
 The host picks a theme per room; the TV and every phone switch together. Site visitors pick one in the footer.
 
 | Theme | Backdrop | Primary / accent |
@@ -84,7 +88,7 @@ The host picks a theme per room; the TV and every phone switch together. Site vi
 | **Spooky** | Full moon, bats, haunted house, jack-o'-lanterns, fog | tangerine / slime |
 | **Cosmos** | Nebulae, twinkling stars, ringed planet, shooting star | grape / cyan |
 
-Backdrops are pure SVG + CSS transforms (no blur filters) so they stay smooth on smart-TV browsers. Any of them can be replaced by a generated image via `apps/web/src/art/manifest.ts` — see [image-prompts.md](image-prompts.md).
+Backdrops are pure SVG + CSS transforms (no blur filters) so they stay smooth on smart-TV browsers. Any of them can be replaced by a generated image via `src/client/art/manifest.ts` — see [image-prompts.md](image-prompts.md).
 
 ## TV rules (10-foot UI)
 
@@ -111,7 +115,7 @@ Backdrops are pure SVG + CSS transforms (no blur filters) so they stay smooth on
 ## File map
 
 ```
-apps/web/src/
+src/client/
   styles/   tokens · themes · base · components · art · site · tv · phone
   art/      Face · Character · Telly · Backdrop · GameArt · manifest
   ui/       Logo · RoomCodeInput · QrCode · Timer · CharacterPicker · Overlay · Toasts · controls · GameCard
