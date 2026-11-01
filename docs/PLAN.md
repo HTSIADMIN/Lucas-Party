@@ -87,28 +87,21 @@ Passwords are hashed with scrypt; sessions are random tokens stored hashed (SHA-
 
 - Front page (join with code or log in, the game lineup, how it works), `/games`, sign-up/login with character pick, profile, host page, admin console, `/design` living style guide.
 - TV screen (code + QR + 8 seats + Telly, then the game stage), phone controller (join, lobby, host lobby, in-game host sheet).
-- Three games:
-  - **Punchline Panic** — head-to-head joke writing + voting, 3 rounds, Zinger/Jinx/Forfeit, panic button. *(Quiplash-style, difficulty 1.)*
-  - **Rocket Riot** — the old Crash game as a couch game: bets, Double Down, Autopilot, Daredevil bonus, Moonshot finale.
-  - **Odd One Out** — hidden-word bluffing; the faker can steal the round by guessing the word. *(Chameleon-style.)*
-- Five themes (Showtime, Neon Arcade, Picnic, Spooky, Cosmos), eight characters with seven moods, Telly the host.
-- 38 tests: game state machines, the TV-side room host (joins, kicks, caps, a full game, TV refresh) and the HTTP API.
+- 26 games (all with engine tests):
+  - **Writing & voting:** Punchline Panic (Quiplash-style duels), Great Minds (match the herd, Dunce Cap, host can merge same-meaning answers), Most Likely To… (with an awards ceremony), Fib Factory (friends edition: find the truth about the spotlight player), Character Court (prosecutor vs defense, jury verdict), Crowd Pleaser (either/or polls + predict the split), Emoji Pitch (pitch a prompt in 1–3 emoji).
+  - **Bluffing & deduction:** Odd One Out (hidden word), Lie Detector (truth or lie, answered out loud), Full Moon (werewolf, seer, doctor), Spy Grid (Codenames-style teams), Liar's Dice.
+  - **Drawing:** Doodle Fraud (Drawful-style) and Scribble Chain (Telestrations-style), on a shared phone drawing pad + SVG renderer (`src/client/games/drawing`).
+  - **Words & clues:** One Clue (Just One-style), Dial It In (Wavelength-style), Shade Spotter (Hues and Cues-style), Word Bomb (the room is the dictionary), Telly Trivia (~100 questions, speed bonus).
+  - **Casino:** Rocket Riot, Blackjack Bash, Hold'em Night (no-limit with side pots), Dice Derby (stacking dice race with leg bets) — on the casino helpers ported from the old site (`src/shared/engine/casino`).
+  - **Reflex & co-op:** Saloon Showdown (quick draw + stop the clock, timed on each phone), Mash Bash (board race of minigames), Bomb Squad (bomb on one phone, manual split across the rest).
+- Five placeholder themes (Showtime, Neon Arcade, Picnic, Spooky, Cosmos), eight characters with seven moods, Telly the host.
+- Tests for every engine, the TV-side room host and the HTTP API.
 
 ## Roadmap
 
 Ordered by "fun per hour of work", using the difficulty ratings in [research](research/README.md).
 
-**Phase 1 — quick wins (text + voting, no new tech)**
-1. Great Minds (match the majority) · 2. Most Likely To… · 3. Dial It In (Wavelength-style dial) · 4. Liar's Dice (hidden dice on phones) · 5. Spy Grid (Codenames-style, spymaster key on phone)
-
-**Phase 2 — drawing pipeline** (phone canvas → compressed strokes → TV)
-6. Doodle Fraud (Drawful-style) · 7. Scribble Chain (Telestrations-style) · 8. Fib Factory (needs a verified fact bank — or a "facts about your friends" mode with player-supplied content)
-
-**Phase 3 — casino party pack** (our niche: research found no casino-style bluffing/betting party games on Netflix or Luna)
-9. Hold'em Night (reuse the poker evaluator) · 10. Blackjack Bash · 11. Dice Derby (Camel Up-style betting race — see [game ideas](research/game-ideas.md))
-
-**Phase 4 — real-time + big games**
-12. Mash Bash minigames · 13. Word Bomb · 14. Full Moon (Werewolf) · 15. Bomb Squad (Keep Talking-style)
+Phases 1–4 (quick wins, the drawing pipeline, the casino party pack, real-time and big games) are **done** — see the list above. Next:
 
 **Phase 5 — movement games** (Rapier physics in the TV, see Decision 2)
 16. Sumo Smash (push everyone off a shrinking ring) · 17. Ledge Wars (platformer knock-offs) — using the movement-ready character spec in [characters-in-motion.md](design/characters-in-motion.md).

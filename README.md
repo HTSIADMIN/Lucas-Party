@@ -2,7 +2,16 @@
 
 Party games for the big screen. Open the site on a TV, everyone joins from their phone with a 4-letter code, and the host runs the show from theirs. Up to 8 players per party; hosting is invite-only so randoms can't burn your compute.
 
-**Games so far:** Punchline Panic (write the funniest answer, the room votes) · Rocket Riot (bet, ride, bail before it blows) · Odd One Out (everyone knows the secret word except the faker) — with more on the roadmap.
+**26 games:**
+
+| Kind | Games |
+|---|---|
+| Writing & voting | Punchline Panic · Great Minds · Most Likely To… · Fib Factory · Character Court · Crowd Pleaser · Emoji Pitch |
+| Bluffing & deduction | Odd One Out · Lie Detector · Full Moon · Spy Grid · Liar's Dice |
+| Drawing | Doodle Fraud · Scribble Chain |
+| Words & clues | One Clue · Dial It In · Shade Spotter · Word Bomb · Telly Trivia |
+| Casino | Rocket Riot · Blackjack Bash · Hold'em Night · Dice Derby |
+| Reflex & co-op | Saloon Showdown · Mash Bash · Bomb Squad |
 
 Runs on **Next.js 16 on Vercel + Supabase** (Postgres for accounts, Realtime for the live party traffic).
 

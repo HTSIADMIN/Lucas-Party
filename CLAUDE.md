@@ -26,6 +26,14 @@ Stack: **Next.js 16 (App Router, Turbopack) on Vercel + Supabase** (Postgres + R
 - Host powers: a seat ticket carries `owner: true` when the joining account owns the room (or is a host claiming a pending TV).
 - Compute guard rails live in `src/server/rooms.ts`: only hosts/admins open *active* rooms; anyone else gets a *pending* room until a host joins; per-host / global / per-IP caps.
 
+## Shared game helpers — reach for these first
+
+- `src/shared/engine/types.ts`: `drawFresh()` (content banks without repeats per room), `nextTurn()` (rotating roles: the connected player who's had it least — use it for psychic/speaker/defendant-style roles), `rankOf()` / `sortedScores()`, `asRecord()`. `ctx.isHost(id)` gates host-only in-game actions.
+- `src/shared/drawing.ts` + `src/client/games/drawing/` (`DrawPad`, `Drawing`): phone drawing pad and SVG renderer, 0–1000 coordinates, point-capped to fit one Realtime message. Auto-submit at the buzzer via `autoSubmitRef` (see Doodle Fraud's phone view).
+- `src/shared/engine/casino/`: cards, poker evaluator, blackjack and roulette helpers (pass `ctx.random`).
+- Phone-side timing (Saloon Showdown, Mash Bash): measure reaction/stop times on the phone from the moment its screen changed and send the number — never compare network arrival times.
+- Every game: `intro` → rounds → `standings` → `podium` (`ctx.finish()`), every phase on a deadline, early finish via a `checkProgress` + GRACE pattern, disconnected phones never block. Scores show live on the TV's player strip — hidden-role games pay out at the reveal so points can't leak secrets.
+
 ## Conventions
 
 - API: `{ error }` with a real status. Writes must be JSON; cross-origin writes are refused. `runtime = "nodejs"` on the route.
@@ -42,10 +50,11 @@ Stack: **Next.js 16 (App Router, Turbopack) on Vercel + Supabase** (Postgres + R
 - **Keep `path.resolve(process.cwd(), …)` behind `/*turbopackIgnore: true*/`** or the build traces the whole repo into the function.
 - **`crypto.randomInt` caps its range at 2^48 − 1.** `randomFloat()` uses `getRandomValues` instead.
 - **Don't write `\uXXXX` escapes in source with the file-writing tool** — they can land as literal characters. Use `\p{…}` classes or `String.fromCharCode`.
+- **Backslashes in Bash heredocs get collapsed** (`\\s` arrives as `\s` or `s`). Write scripts with the file tool and run them, rather than inlining regex-heavy code in a heredoc.
 - **Browser testing:** background tabs don't run CSS animations or `requestAnimationFrame`, so front a tab before screenshots. To be several players in one browser, use different origins (`localhost`, `127.0.0.1`, the LAN IP): cookies are per origin and seat tokens are per tab. Ties are real: rank with `rankOf()` semantics (1, 1, 3).
 
 ## Testing
 
-- `npm test` — engines via `tests/harness.ts` (manual clock), `room.test.ts` (RoomHost with fake links + fake timers: joins, kicks, 8-seat cap, a full Punchline game, TV-refresh resume), `api.test.ts` (Hono app + in-memory SQLite + capturing broadcaster).
+- `npm test` — every game engine via `tests/harness.ts` (manual clock; options `familyMode`, `hostId`), `room.test.ts` (RoomHost with fake links + fake timers: joins, kicks, 8-seat cap, a full Punchline game, TV-refresh resume), `api.test.ts` (Hono app + in-memory SQLite + capturing broadcaster).
 - `npm run typecheck`, `npm run build`.
 - `npm run dev:seed` makes local test accounts (random passwords in `data/dev-accounts.json`).
