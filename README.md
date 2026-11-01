@@ -2,16 +2,16 @@
 
 Party games for the big screen. Open the site on a TV, everyone joins from their phone with a 4-letter code, and the host runs the show from theirs. Up to 8 players per party; hosting is invite-only so randoms can't burn your compute.
 
-**26 games:**
+**29 games:**
 
 | Kind | Games |
 |---|---|
 | Writing & voting | Punchline Panic · Great Minds · Most Likely To… · Fib Factory · Character Court · Crowd Pleaser · Emoji Pitch |
-| Bluffing & deduction | Odd One Out · Lie Detector · Full Moon · Spy Grid · Liar's Dice |
+| Bluffing & deduction | Odd One Out · Lie Detector · Full Moon · Spy Grid · Liar's Dice · Bid or Bust |
 | Drawing | Doodle Fraud · Scribble Chain |
 | Words & clues | One Clue · Dial It In · Shade Spotter · Word Bomb · Telly Trivia |
-| Casino | Rocket Riot · Blackjack Bash · Hold'em Night · Dice Derby |
-| Reflex & co-op | Saloon Showdown · Mash Bash · Bomb Squad |
+| Casino | Rocket Riot · Blackjack Bash · Hold'em Night · Dice Derby · Roulette Royale |
+| Reflex & co-op | Saloon Showdown · Mash Bash · Bomb Squad · Heist Night |
 
 Runs on **Next.js 16 on Vercel + Supabase** (Postgres for accounts, Realtime for the live party traffic).
 

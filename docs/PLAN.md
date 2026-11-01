@@ -87,13 +87,13 @@ Passwords are hashed with scrypt; sessions are random tokens stored hashed (SHA-
 
 - Front page (join with code or log in, the game lineup, how it works), `/games`, sign-up/login with character pick, profile, host page, admin console, `/design` living style guide.
 - TV screen (code + QR + 8 seats + Telly, then the game stage), phone controller (join, lobby, host lobby, in-game host sheet).
-- 26 games (all with engine tests):
+- 29 games (all with engine tests):
   - **Writing & voting:** Punchline Panic (Quiplash-style duels), Great Minds (match the herd, Dunce Cap, host can merge same-meaning answers), Most Likely To… (with an awards ceremony), Fib Factory (friends edition: find the truth about the spotlight player), Character Court (prosecutor vs defense, jury verdict), Crowd Pleaser (either/or polls + predict the split), Emoji Pitch (pitch a prompt in 1–3 emoji).
-  - **Bluffing & deduction:** Odd One Out (hidden word), Lie Detector (truth or lie, answered out loud), Full Moon (werewolf, seer, doctor), Spy Grid (Codenames-style teams), Liar's Dice.
+  - **Bluffing & deduction:** Odd One Out (hidden word), Lie Detector (truth or lie, answered out loud), Full Moon (werewolf, seer, doctor), Spy Grid (Codenames-style teams), Liar's Dice, Bid or Bust (sealed-bid mystery boxes with private hints).
   - **Drawing:** Doodle Fraud (Drawful-style) and Scribble Chain (Telestrations-style), on a shared phone drawing pad + SVG renderer (`src/client/games/drawing`).
   - **Words & clues:** One Clue (Just One-style), Dial It In (Wavelength-style), Shade Spotter (Hues and Cues-style), Word Bomb (the room is the dictionary), Telly Trivia (~100 questions, speed bonus).
-  - **Casino:** Rocket Riot, Blackjack Bash, Hold'em Night (no-limit with side pots), Dice Derby (stacking dice race with leg bets) — on the casino helpers ported from the old site (`src/shared/engine/casino`).
-  - **Reflex & co-op:** Saloon Showdown (quick draw + stop the clock, timed on each phone), Mash Bash (board race of minigames), Bomb Squad (bomb on one phone, manual split across the rest).
+  - **Casino:** Rocket Riot, Blackjack Bash, Hold'em Night (no-limit with side pots), Dice Derby (stacking dice race with leg bets), Roulette Royale (50:1 hot number) — on the casino helpers ported from the old site (`src/shared/engine/casino`).
+  - **Reflex & co-op:** Saloon Showdown (quick draw + stop the clock, timed on each phone), Mash Bash (board race of minigames), Bomb Squad (bomb on one phone, manual split across the rest), Heist Night (split clues that pin down one vault code).
 - Five placeholder themes (Showtime, Neon Arcade, Picnic, Spooky, Cosmos), eight characters with seven moods, Telly the host.
 - Tests for every engine, the TV-side room host and the HTTP API.
 
