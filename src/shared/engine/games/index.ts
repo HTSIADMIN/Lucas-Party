@@ -29,6 +29,7 @@ import { wordbomb } from "./wordbomb";
 import { roulette } from "./roulette";
 import { heist } from "./heist";
 import { bidorbust } from "./bidorbust";
+import { drawoff } from "./drawoff";
 
 // To add a game: implement GameDefinition, register it here, add its id to
 // LIVE_GAME_IDS + GAME_CATALOG in @party/shared, and add TV/phone views in
@@ -63,4 +64,5 @@ export const GAMES: Record<GameId, GameDefinition<any>> = {
   roulette,
   heist,
   bidorbust,
+  drawoff,
 };

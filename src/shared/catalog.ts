@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby", "bombsquad", "wordbomb", "roulette", "heist", "bidorbust"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby", "bombsquad", "wordbomb", "roulette", "heist", "bidorbust", "drawoff"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -235,6 +235,16 @@ export const GAME_CATALOG: GameMeta[] = [
     howTo: ["Read your secret hint.", "Spread sealed bids across the boxes.", "Highest bid buys — hope it's not the chicken."],
     options: [{ key: "rounds", label: "Rounds", default: 5, choices: [{ value: 4, label: "4" }, { value: 5, label: "5" }, { value: 7, label: "7" }] }],
     inspiredBy: "Our Bid or Bust idea",
+  },
+
+  {
+    id: "drawoff", name: "Draw Off", status: "live",
+    tagline: "One prompt. Every interpretation.",
+    description: "Everyone draws the same ridiculous prompt at the same time. Then the whole gallery goes up on the TV — anonymous — and the room votes for its favourite. Every vote is points, and the crowd favourite takes a bonus.",
+    players: [3, 8], minutes: [6, 10], tags: ["drawing", "voting"], accent: "#FF8A3D",
+    howTo: ["Draw the prompt on your phone.", "Browse the gallery on the TV.", "Vote for your favourite (not your own)."],
+    options: [{ key: "rounds", label: "Rounds", default: 3, choices: [{ value: 2, label: "2" }, { value: 3, label: "3" }, { value: 5, label: "5" }] }],
+    inspiredBy: "Our Draw Off idea",
   },
 
   // ── Coming soon (roadmap order, easiest first) ─────────────────────────

@@ -1,0 +1,16 @@
+/* Draw Off — TV */
+.do-prompt { font-family: var(--font-display); font-size: 3em; line-height: 1.1; text-align: center; max-width: 16em; padding: 0.5em 0.9em; border-radius: 0.6em; border-width: 0.12em; box-shadow: 0 0.12em 0 var(--outline); }
+.do-prompt.is-small { font-size: 1.7em; }
+.do-stage { gap: 0.7em; }
+.do-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 13em)); gap: 0.8em; justify-content: center; }
+.do-frame { position: relative; margin: 0; display: grid; gap: 0.3em; padding: 0.5em; border-radius: 0.8em; background: #6b4232; border: 0.16em solid var(--outline); box-shadow: 0 0.25em 0 var(--outline), inset 0 0 0 0.3em #8a5a3c; }
+.do-frame.is-top { box-shadow: 0 0.25em 0 var(--outline), 0 0 0 0.25em var(--accent); transform: scale(1.04); }
+.do-number { position: absolute; top: -0.6em; left: -0.6em; width: 1.7em; height: 1.7em; display: grid; place-items: center; border-radius: 50%; background: var(--primary); color: #fff; font-family: var(--font-display); font-size: 1.1em; border: 0.12em solid var(--outline); z-index: 1; }
+.do-drawing { border: 0.1em solid var(--outline); }
+.do-caption { display: flex; align-items: center; gap: 0.3em; color: #fff; font-weight: 800; }
+.do-caption b { margin-left: auto; color: var(--accent); }
+
+/* Draw Off — phone */
+.do-votes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.do-vote { aspect-ratio: 1; border-radius: var(--r-md); border: var(--ow) solid var(--outline); background: var(--surface); color: var(--text); font-family: var(--font-display); font-size: 1.6rem; cursor: pointer; box-shadow: var(--sh-1); }
+.do-vote:active { transform: translateY(2px); box-shadow: none; }

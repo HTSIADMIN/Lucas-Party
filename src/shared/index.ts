@@ -36,3 +36,4 @@ export * from "./games/wordbomb";
 export * from "./games/roulette";
 export * from "./games/heist";
 export * from "./games/bidorbust";
+export * from "./games/drawoff";
