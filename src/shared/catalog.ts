@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -196,6 +196,15 @@ export const GAME_CATALOG: GameMeta[] = [
     howTo: ["See who's on trial and for what.", "Lawyers write the case for or against.", "The jury votes: guilty or not guilty?"],
     options: [{ key: "rounds", label: "Cases", default: 0, choices: [{ value: 4, label: "4" }, { value: 6, label: "6" }, { value: 0, label: "Everyone" }] }],
     inspiredBy: "Our Character Court idea",
+  },
+
+  {
+    id: "dicederby", name: "Dice Derby", status: "live",
+    tagline: "Five racers. One dice tower. Zero chill.",
+    description: "Bet your chips on who'll lead each leg of a crazy dice race — underdogs pay more. Racers roll 1–3 and carry anyone stacked on top of them, so the lead flips all the time. Call the overall winner for a big bonus. Most chips wins.",
+    players: [2, 8], minutes: [10, 15], tags: ["casino", "voting"], accent: "#2FDB9A",
+    howTo: ["Secretly pick the Derby winner.", "Each leg, bet chips on who'll be in front.", "Watch the stacks tumble. Most chips wins."],
+    inspiredBy: "Camel Up-style betting race (our Dice Derby idea)",
   },
 
   // ── Coming soon (roadmap order, easiest first) ─────────────────────────

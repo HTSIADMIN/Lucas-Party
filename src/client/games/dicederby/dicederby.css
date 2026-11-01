@@ -1,0 +1,29 @@
+/* Dice Derby — TV */
+.dd-wrap { gap: 0.8em; }
+.dd-track { display: grid; grid-template-columns: repeat(17, minmax(0, 1fr)); gap: 0.25em; width: min(64em, 100%); padding: 0.5em; border-radius: 1em; background: #2e7d4f; border: 0.16em solid var(--outline); box-shadow: 0 0.25em 0 var(--outline), inset 0 0 0 0.3em #3a9a60; }
+.dd-space { display: grid; grid-template-rows: 1fr auto; min-height: 9em; border-radius: 0.5em; background: rgba(255, 255, 255, 0.12); border: 0.08em dashed rgba(255, 255, 255, 0.35); }
+.dd-space.is-start { background: rgba(255, 255, 255, 0.25); }
+.dd-space.is-finish { background: repeating-conic-gradient(#fff 0 25%, #1b1033 0 50%) 0 0 / 1em 1em; }
+.dd-stack { display: flex; flex-direction: column-reverse; align-items: center; justify-content: flex-start; padding-top: 0.2em; }
+.dd-racer { margin-top: -0.8em; }
+.dd-racer.is-moving { filter: drop-shadow(0 0 0.4em #fff); }
+.dd-space-num { text-align: center; font-family: var(--font-display); font-size: 0.85em; color: #fff; padding: 0.1em 0; }
+.dd-space.is-finish .dd-space-num { background: var(--surface); color: var(--text); border-radius: 0 0 0.4em 0.4em; }
+.dd-odds { display: grid; gap: 0.3em; width: min(30em, 100%); padding: 0.6em; border-radius: 1em; background: var(--surface); color: var(--text); border: 0.14em solid var(--outline); }
+.dd-odds-row { display: flex; align-items: center; gap: 0.5em; font-weight: 800; font-size: 1.1em; }
+.dd-odds-place { font-family: var(--font-display); width: 1.2em; text-align: center; }
+.dd-odds-name { min-width: 0; }
+.dd-backers { display: flex; gap: 0.1em; }
+.dd-odds-mult { font-family: var(--font-display); font-size: 1.3em; color: var(--primary); min-width: 2em; text-align: right; }
+.dd-roll { display: inline-flex; align-items: center; gap: 0.6em; font-family: var(--font-display); font-size: 2.2em; color: #fff; -webkit-text-stroke: 0.05em var(--ink-900); paint-order: stroke fill; }
+.dd-die { display: inline-grid; place-items: center; width: 1.4em; height: 1.4em; border-radius: 0.25em; background: #fff; color: var(--ink-900); border: 0.08em solid var(--outline); -webkit-text-stroke: 0; }
+.dd-payouts { display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: center; max-width: 60em; }
+.dd-payout { font-size: 1.05em; }
+.dd-payout.is-win { background: var(--success); }
+.dd-payout.is-loss { background: var(--danger); color: #fff; }
+
+/* Dice Derby — phone */
+.dd-racers { display: grid; gap: 8px; }
+.dd-racer-btn { min-height: 58px; padding: 8px 12px; }
+.dd-amount { font-family: var(--font-display); font-size: 2rem; text-align: center; }
+.dd-range { width: 100%; accent-color: var(--primary); }
