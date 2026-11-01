@@ -1,0 +1,19 @@
+/* Bid or Bust — TV */
+.bb-stage { gap: 1em; }
+.bb-boxes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1em; width: min(60em, 100%); }
+.bb-box { position: relative; display: grid; place-items: center; min-height: 12em; padding: 1em 0.6em 0.8em; border-radius: 1em; background: linear-gradient(160deg, #c98d4b, #8a5a3c); border: 0.2em solid var(--outline); box-shadow: 0 0.35em 0 var(--outline), inset 0 0 0 0.35em rgba(255, 255, 255, 0.15); color: #fff; }
+.bb-box.is-open { background: var(--surface); color: var(--text); }
+.bb-box.is-chicken { background: #ffe08a; }
+.bb-box-label { position: absolute; top: 0.4em; left: 0.6em; font-family: var(--font-display); font-size: 1.6em; }
+.bb-question { font-family: var(--font-display); font-size: 5em; -webkit-text-stroke: 0.04em var(--ink-900); paint-order: stroke fill; }
+.bb-box-inside { display: grid; justify-items: center; gap: 0.2em; text-align: center; }
+.bb-value { font-family: var(--font-display); font-size: 3.4em; line-height: 1; }
+.bb-value-sub { font-weight: 800; color: var(--text-muted); }
+.bb-winner { display: inline-flex; align-items: center; gap: 0.3em; font-weight: 800; font-size: 1em; }
+
+/* Bid or Bust — phone */
+.bb-hint { display: grid; gap: 4px; padding: 12px; border-radius: var(--r-md); background: #fffbe8; border: 2px dashed var(--outline); font-size: 1.1rem; }
+.bb-bid-rows { display: grid; gap: 8px; }
+.bb-bid-row { display: flex; align-items: center; gap: 8px; }
+.bb-bid-box { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 10px; background: #c98d4b; color: #fff; font-family: var(--font-display); font-size: 1.3rem; border: 2px solid var(--outline); }
+.bb-bid-amount { flex: 1; text-align: center; font-family: var(--font-display); font-size: 1.5rem; }
