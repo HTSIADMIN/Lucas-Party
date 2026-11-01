@@ -127,3 +127,9 @@ button.word-cell:active { transform: translateY(1px); }
 .clue-list { display: grid; gap: 6px; }
 .clue-item { display: flex; align-items: center; gap: 8px; font-weight: 700; }
 .clue-item b { margin-left: auto; }
+
+/* Host game picker filters */
+.host-filters { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.host-filters::-webkit-scrollbar { display: none; }
+.host-filter { flex: none; cursor: pointer; border: 2px solid var(--outline); font-weight: 800; }
+.host-filter.is-on { background: var(--accent); }

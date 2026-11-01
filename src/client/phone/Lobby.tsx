@@ -5,11 +5,13 @@ import { useState } from "react";
 import {
   CHARACTERS,
   GAME_CATALOG,
+  TAG_LABEL,
   THEMES,
   THEME_IDS,
   defaultOptions,
   getGameMeta,
   type GameId,
+  type GameTag,
   type Pace,
   type PlayerPublic,
   type RoomView,
@@ -22,6 +24,9 @@ import { Segmented, Toggle } from "../ui/controls";
 import { Modal, Sheet } from "../ui/Overlay";
 
 const LIVE_GAMES = GAME_CATALOG.filter((g) => g.status === "live");
+/** Tags that at least one live game uses, in catalog order. */
+const TAGS = (Object.keys(TAG_LABEL) as GameTag[]).filter((t) => LIVE_GAMES.some((g) => g.tags.includes(t)));
+type Filter = "fits" | "all" | GameTag;
 
 export function PlayerList({ room, client, me, canKick }: { room: RoomView; client: RoomClient; me: PlayerPublic; canKick: boolean }) {
   const [kicking, setKicking] = useState<PlayerPublic | null>(null);
@@ -124,6 +129,11 @@ export function HostLobby({ room, client, me }: { room: RoomView; client: RoomCl
   const selected = room.settings.gameId;
   const meta = selected ? getGameMeta(selected) : null;
   const here = room.players.filter((p) => p.connected).length;
+  const [browsing, setBrowsing] = useState(!selected);
+  const [filter, setFilter] = useState<Filter>("fits");
+  const filtered = LIVE_GAMES.filter((g) => (filter === "all" ? true : filter === "fits" ? here >= g.players[0] && here <= g.players[1] : g.tags.includes(filter)));
+  const fitsFallback = (browsing || !selected) && filter === "fits" && filtered.length === 0;
+  const shown = selected && !browsing ? LIVE_GAMES.filter((g) => g.id === selected) : fitsFallback ? LIVE_GAMES : filtered;
   let blocker: string | null = null;
   if (!meta) blocker = "Pick a game";
   else if (here < meta.players[0]) blocker = `Need ${meta.players[0]}+ players (${here} here)`;
@@ -142,10 +152,36 @@ export function HostLobby({ room, client, me }: { room: RoomView; client: RoomCl
       </div>
 
       <div className="phone-card">
-        <h3 className="phone-card-title">Pick a game</h3>
+        <div className="host-row">
+          <h3 className="phone-card-title">{selected && !browsing ? "Up next" : "Pick a game"}</h3>
+          {selected && !browsing && (
+            <button type="button" className="btn btn-light btn-sm" onClick={() => setBrowsing(true)}>
+              Change game
+            </button>
+          )}
+        </div>
+        {(browsing || !selected) && (
+          <div className="host-filters" role="radiogroup" aria-label="Filter games">
+            {[{ id: "fits", label: `Fits ${here}` }, { id: "all", label: "All" }, ...TAGS.map((t) => ({ id: t, label: TAG_LABEL[t] }))].map((f) => (
+              <button key={f.id} type="button" role="radio" aria-checked={filter === f.id} className={`chip host-filter ${filter === f.id ? "is-on" : ""}`} onClick={() => setFilter(f.id as Filter)}>
+                {f.label}
+              </button>
+            ))}
+          </div>
+        )}
+        {fitsFallback && <p className="muted" style={{ fontWeight: 600 }}>No game fits {here} {here === 1 ? "player" : "players"} yet — showing everything.</p>}
         <div className="host-games">
-          {LIVE_GAMES.map((g) => (
-            <button key={g.id} type="button" className="host-game" aria-pressed={selected === g.id} onClick={() => client.host({ type: "selectGame", gameId: g.id as GameId })}>
+          {shown.map((g) => (
+            <button
+              key={g.id}
+              type="button"
+              className="host-game"
+              aria-pressed={selected === g.id}
+              onClick={() => {
+                client.host({ type: "selectGame", gameId: g.id as GameId });
+                setBrowsing(false);
+              }}
+            >
               <span className="host-game-art">
                 <GameArt id={g.id} />
               </span>
