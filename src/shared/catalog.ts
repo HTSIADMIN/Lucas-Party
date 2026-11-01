@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby", "bombsquad"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -269,11 +269,12 @@ export const GAME_CATALOG: GameMeta[] = [
     inspiredBy: "Mario Party (tap/timing minigames only)",
   },
   {
-    id: "bombsquad", name: "Bomb Squad", status: "soon",
+    id: "bombsquad", name: "Bomb Squad", status: "live",
     tagline: "One phone has the bomb. Everyone else has the manual.",
-    description: "One player sees the wires and dials; the rest of the room has scraps of the defusal manual. Talk fast.",
-    players: [2, 8], minutes: [5, 15], tags: ["co-op", "reflex"], accent: "#FF9A3C",
-    howTo: ["The defuser describes the bomb.", "Experts search their manual pages.", "Cut the right wire before time runs out."],
+    description: "One player's phone shows a bomb nobody else can see: wires, a symbol keypad and a sound-alike word panel. Everyone else holds scraps of the defusal manual. Describe, read, argue — and disarm it before the clock hits zero.",
+    players: [2, 8], minutes: [8, 15], tags: ["co-op", "reflex"], accent: "#FF9A3C",
+    howTo: ["The defuser describes the bomb.", "Experts read out their manual pages.", "Disarm all three modules before time runs out."],
+    options: [{ key: "rounds", label: "Bombs", default: 3, choices: [{ value: 1, label: "1" }, { value: 2, label: "2" }, { value: 3, label: "3" }] }],
     inspiredBy: "Keep Talking and Nobody Explodes",
   },
 ];

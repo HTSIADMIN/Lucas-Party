@@ -31,3 +31,4 @@ export * from "./games/trivia";
 export * from "./games/emojipitch";
 export * from "./games/court";
 export * from "./games/dicederby";
+export * from "./games/bombsquad";

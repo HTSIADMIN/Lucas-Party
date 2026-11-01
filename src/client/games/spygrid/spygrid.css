@@ -1,0 +1,204 @@
+/* ── Spy Grid ──────────────────────────────────────────────────────────────
+   Red and Blue stay red and blue in every theme. Kinds differ by shape as
+   well as colour: diamond = Red agent, circle = Blue agent, skull = assassin,
+   plain beige = bystander. `.spy` wraps every Spy Grid screen. */
+.spy {
+  --spy-red: var(--cherry-500);
+  --spy-red-deep: var(--cherry-700);
+  --spy-red-soft: var(--cherry-300);
+  --spy-blue: var(--sky-500);
+  --spy-blue-deep: var(--sky-700);
+  --spy-blue-soft: var(--sky-300);
+  --spy-bystander: var(--cream-300);
+  --spy-assassin: var(--ink-900);
+}
+.spy.is-red,
+.spy .is-red { --team: var(--spy-red); --team-deep: var(--spy-red-deep); --team-soft: var(--spy-red-soft); }
+.spy.is-blue,
+.spy .is-blue { --team: var(--spy-blue); --team-deep: var(--spy-blue-deep); --team-soft: var(--spy-blue-soft); }
+
+.spy-team-word { color: var(--team); }
+/* Outside a .tv-title (which brings its own stroke) the coloured word gets an ink outline so it reads on light themes too. */
+.tv-sub .spy-team-word { font-family: var(--font-display); -webkit-text-stroke: 0.12em var(--ink-900); paint-order: stroke fill; }
+
+/* ── Word cards (TV + phone) ── */
+.spy-card {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+  padding: 0.35em 0.3em;
+  border-radius: 0.55em;
+  border: 0.14em solid var(--outline);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 0.2em 0 var(--outline);
+  text-align: center;
+  line-height: 1.05;
+}
+button.spy-card { cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+button.spy-card:active { transform: translateY(1px); }
+.spy-word { font-family: var(--font-display); letter-spacing: 0.01em; overflow-wrap: anywhere; }
+
+.spy-card.is-red,
+.spy-card.is-blue { background: var(--team); color: var(--ink-900); }
+.spy-card.is-bystander { background: var(--spy-bystander); color: var(--ink-700); }
+.spy-card.is-assassin { background: var(--spy-assassin); color: var(--cream-50); }
+/* Known but not flipped (a spymaster's key, or the whole key once a board is over): a lighter wash. */
+.spy-card.is-shown.is-red,
+.spy-card.is-shown.is-blue { background: color-mix(in srgb, var(--team) 52%, var(--surface)); }
+.spy-card.is-shown.is-bystander { background: color-mix(in srgb, var(--spy-bystander) 55%, var(--surface)); }
+.spy-card.is-shown.is-assassin { background: color-mix(in srgb, var(--spy-assassin) 85%, var(--surface)); }
+
+.spy-emblem { position: absolute; top: 0.32em; right: 0.32em; width: 0.7em; height: 0.7em; border: 0.12em solid var(--outline); background: var(--cream-50); }
+.spy-card.is-red .spy-emblem { border-radius: 0.12em; transform: rotate(45deg) scale(0.88); }
+.spy-card.is-blue .spy-emblem { border-radius: 50%; }
+.spy-skull { position: absolute; top: 0.18em; right: 0.24em; line-height: 1; }
+
+.spy-dots { position: absolute; left: 0.3em; bottom: 0.3em; display: flex; flex-wrap: wrap; gap: 0.15em; max-width: calc(100% - 0.6em); }
+.spy-dot { width: 0.8em; height: 0.8em; border-radius: 50%; border: 0.12em solid var(--outline); animation: spy-dot-in var(--dur-3) var(--ease-pop) both; }
+.spy-card.has-votes { box-shadow: 0 0.2em 0 var(--outline), 0 0 0 0.22em var(--focus); }
+
+.spy-card.is-last { z-index: 1; animation: spy-flip 0.65s var(--ease-pop) both; }
+.spy-card.is-last.is-assassin { animation: spy-flip 0.65s var(--ease-pop) both, spy-shake 0.4s 0.65s ease-in-out 2; }
+
+@keyframes spy-flip {
+  0% { transform: perspective(30em) rotateY(-90deg) scale(1.12); }
+  70% { transform: perspective(30em) rotateY(10deg) scale(1.05); }
+  100% { transform: none; }
+}
+@keyframes spy-shake {
+  0%, 100% { transform: none; }
+  25% { transform: translateX(-0.25em) rotate(-2deg); }
+  75% { transform: translateX(0.25em) rotate(2deg); }
+}
+@keyframes spy-dot-in { from { transform: scale(0); } }
+
+/* ── TV ── */
+.spy-stage { display: grid; grid-template-columns: 14em minmax(0, 1fr) 14em; gap: 1.2em; min-height: 0; }
+.spy-center { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 0.8em; min-width: 0; min-height: 0; }
+.spy-head { min-height: 6.6em; display: flex; align-items: center; justify-content: center; gap: 1.2em; text-align: center; }
+.spy-head-text { display: grid; justify-items: center; align-content: center; gap: 0.3em; min-width: 0; }
+.tv-title.spy-head-title { font-size: 2.5em; }
+.spy-head-label { font-family: var(--font-display); font-size: 1.2em; padding: 0.1em 0.7em; border-radius: 1em; background: var(--team); color: var(--ink-900); border: 0.12em solid var(--outline); }
+.spy-head .spy-clue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  max-width: 100%;
+  padding: 0.08em 0.45em;
+  font-family: var(--font-display);
+  font-size: 3.1em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  background: var(--surface);
+  color: var(--text);
+  border: 0.05em solid var(--outline);
+  border-radius: 0.3em;
+  box-shadow: 0 0.07em 0 var(--outline);
+}
+.spy-head .spy-clue.is-long { font-size: 2.2em; }
+.spy-clue-word { overflow-wrap: anywhere; }
+.spy-head .spy-clue-count { display: grid; place-items: center; min-width: 1.25em; height: 1.25em; padding: 0 0.15em; border-radius: 1em; background: var(--team); border: 0.05em solid var(--outline); font-size: 0.8em; }
+.spy-head-side { display: grid; gap: 0.25em; padding: 0.5em 0.9em; border-radius: 0.8em; background: var(--surface); color: var(--text); border: 0.14em solid var(--outline); box-shadow: 0 0.2em 0 var(--outline); font-weight: 800; text-align: left; }
+.spy-guesses { font-size: 1.25em; }
+.spy-guesses b { font-family: var(--font-display); font-size: 1.4em; }
+.spy-needed { color: var(--text-muted); font-size: 0.95em; }
+.spy-end-votes { display: inline-flex; align-items: center; gap: 0.4em; }
+.spy-end-votes .spy-dots { position: static; }
+.spy-note { font-weight: 800; font-size: 1.1em; padding: 0.2em 0.9em; border-radius: 1em; background: var(--surface); color: var(--text); border: 0.12em solid var(--outline); box-shadow: 0 0.15em 0 var(--outline); }
+.spy-result { font-family: var(--font-display); font-size: 4em; line-height: 1; color: var(--team, var(--accent)); -webkit-text-stroke: 0.08em var(--ink-900); paint-order: stroke fill; text-shadow: 0 0.06em 0 var(--ink-900); }
+
+.spy-tv-board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: repeat(5, minmax(0, 1fr)); gap: 0.55em; min-height: 0; }
+.spy-tv-board .spy-word { font-size: 1.5em; }
+.spy-tv-board .spy-card.is-long .spy-word { font-size: 1.2em; }
+.spy-tv-board .spy-skull { font-size: 1.2em; }
+
+.spy-team {
+  display: grid;
+  align-content: start;
+  gap: 0.6em;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0.7em;
+  border-radius: 1em;
+  background: var(--surface);
+  color: var(--text);
+  border: 0.16em solid var(--outline);
+  box-shadow: 0 0.25em 0 var(--outline);
+  transition: box-shadow var(--dur-2), opacity var(--dur-2), transform var(--dur-2) var(--ease-out);
+}
+.spy-team.is-active,
+.spy-team.is-winner { box-shadow: 0 0.25em 0 var(--outline), 0 0 0 0.32em var(--team); }
+.spy-team.is-active { transform: translateY(-0.2em); }
+.spy-team.is-waiting { opacity: 0.78; }
+.spy-team-head { display: flex; align-items: center; justify-content: space-between; gap: 0.4em; padding: 0.2em 0.6em; border-radius: 0.6em; background: var(--team); color: var(--ink-900); border: 0.12em solid var(--outline); }
+.spy-team-name { font-family: var(--font-display); font-size: 1.7em; line-height: 1.15; }
+.spy-team-first { font-weight: 800; font-size: 0.8em; padding: 0.1em 0.5em; border-radius: 1em; background: var(--surface); border: 0.1em solid var(--outline); white-space: nowrap; }
+.spy-team-count { display: flex; align-items: baseline; gap: 0.4em; }
+.spy-team-left { font-family: var(--font-display); font-size: 2.8em; line-height: 1; }
+.spy-team-left-label { font-weight: 800; color: var(--text-muted); }
+.spy-pips { display: flex; flex-wrap: wrap; gap: 0.3em; }
+.spy-pip { width: 0.95em; height: 0.95em; border: 0.12em solid var(--outline); background: var(--surface-3); }
+.spy-team.is-red .spy-pip { border-radius: 0.12em; transform: rotate(45deg) scale(0.82); }
+.spy-team.is-blue .spy-pip { border-radius: 50%; }
+.spy-pip.is-found { background: var(--team); }
+.spy-members { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35em; }
+.spy-member { display: flex; align-items: center; gap: 0.45em; min-width: 0; }
+.spy-member.is-away { opacity: 0.55; }
+.spy-member-text { display: grid; min-width: 0; line-height: 1.15; }
+.spy-member-name { font-weight: 800; font-size: 1.05em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.spy-badge { justify-self: start; font-weight: 800; font-size: 0.75em; padding: 0.05em 0.5em; border-radius: 1em; background: var(--ink-900); color: var(--cream-50); white-space: nowrap; }
+.spy-history { display: flex; flex-wrap: wrap; gap: 0.3em; }
+.spy-history-chip { font-weight: 800; font-size: 0.9em; text-transform: uppercase; padding: 0.1em 0.55em; border-radius: 1em; background: var(--team-soft); border: 0.1em solid var(--outline); overflow-wrap: anywhere; }
+
+/* ── Phone ── */
+.spy-phone { display: contents; }
+.spy-phone .spy-team-word { font-family: var(--font-display); -webkit-text-stroke: 4px var(--ink-900); paint-order: stroke fill; }
+.spy-role { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 8px 8px 14px; border-radius: var(--r-md); border: var(--ow) solid var(--outline); background: var(--team); color: var(--ink-900); box-shadow: var(--sh-1); }
+.spy-role-team { font-family: var(--font-display); font-size: 1.35rem; }
+.spy-role-tag { font-weight: 800; font-size: 0.9rem; padding: 3px 10px; border-radius: var(--r-pill); background: var(--surface); color: var(--text); border: 2px solid var(--outline); white-space: nowrap; }
+.spy-copy { font-weight: 600; }
+.phone-card.spy-status { justify-items: center; text-align: center; gap: 6px; font-size: 1.05rem; }
+.spy-status-note { font-weight: 700; font-size: 0.9rem; color: var(--text-muted); }
+.spy-form-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.spy-count { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.spy-count button { min-height: 46px; border-radius: var(--r-sm); border: var(--ow) solid var(--outline); background: var(--surface); color: var(--text); font-family: var(--font-display); font-size: 1.3rem; box-shadow: var(--sh-1); cursor: pointer; touch-action: manipulation; }
+.spy-count button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); box-shadow: 0 0 0 3px var(--focus), var(--sh-1); }
+
+.phone-card.spy-clue-card { justify-items: center; text-align: center; gap: 4px; box-shadow: var(--sh-2), inset 0 6px 0 var(--team); padding-top: 20px; }
+.spy-clue-line { display: flex; align-items: center; justify-content: center; gap: 10px; max-width: 100%; }
+.spy-clue-card .spy-clue-word { font-family: var(--font-display); font-size: 2rem; line-height: 1.05; text-transform: uppercase; }
+.spy-clue-card .is-long .spy-clue-word { font-size: 1.35rem; }
+.spy-clue-card .spy-clue-count { display: grid; place-items: center; min-width: 40px; height: 40px; padding: 0 6px; border-radius: var(--r-pill); background: var(--team); border: var(--ow) solid var(--outline); font-family: var(--font-display); font-size: 1.4rem; }
+.spy-clue-meta { font-weight: 700; color: var(--text-muted); }
+
+.phone-card.spy-board-card { padding: 8px; gap: 8px; }
+.spy-board-card > .label { padding: 2px 4px 0; }
+.spy-phone-board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.spy-phone-board .spy-card { min-height: 54px; padding: 8px 2px; border-width: 2px; border-radius: 8px; box-shadow: 0 2px 0 var(--outline); }
+.spy-phone-board .spy-word { font-size: clamp(9px, 2.9vw, 14px); }
+.spy-phone-board .spy-card.is-long .spy-word { font-size: clamp(8px, 2.45vw, 12px); }
+.spy-phone-board .spy-emblem { top: 3px; right: 3px; width: 7px; height: 7px; border-width: 1.5px; }
+.spy-phone-board .spy-skull { top: 2px; right: 2px; font-size: 10px; }
+.spy-phone-board .spy-dots { left: 3px; bottom: 3px; gap: 2px; max-width: calc(100% - 6px); }
+.spy-phone-board .spy-dot { width: 8px; height: 8px; border-width: 1.5px; }
+.spy-phone-board .spy-card.has-votes { box-shadow: 0 2px 0 var(--outline), 0 0 0 2px var(--focus); }
+.spy-phone-board .spy-card.is-selected { background: color-mix(in srgb, var(--accent) 50%, var(--surface)); box-shadow: 0 0 0 3px var(--focus), 0 2px 0 var(--outline); transform: translateY(-2px); }
+.spy-phone-board .spy-card.is-mine { border-color: var(--mint-700); }
+.spy-mine { position: absolute; top: 2px; left: 3px; font-weight: 800; font-size: 11px; line-height: 1; color: var(--mint-700); }
+/* On the key, cards that are already out of play fade back. */
+.spy-phone-board.is-key .spy-card.is-flipped { opacity: 0.45; }
+.spy-phone-board.is-key .spy-card.is-flipped .spy-word { text-decoration: line-through; }
+.spy-board-foot { font-size: var(--fs-sm); font-weight: 700; color: var(--text-muted); text-align: center; }
+.spy-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: var(--fs-xs); font-weight: 700; color: var(--text-muted); }
+.spy-legend > span { display: inline-flex; align-items: center; gap: 4px; }
+.spy-swatch { width: 12px; height: 12px; border-radius: 3px; border: 2px solid var(--outline); }
+.spy-swatch.is-red { background: var(--spy-red); }
+.spy-swatch.is-blue { background: var(--spy-blue); border-radius: 50%; }
+.spy-swatch.is-bystander { background: var(--spy-bystander); }
+.spy-swatch.is-assassin { background: var(--spy-assassin); }
+
+.spy-vote-bar { display: grid; gap: 8px; }
+.spy-vote-status { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 8px 8px 14px; border-radius: var(--r-md); background: var(--surface); color: var(--text); border: var(--ow) solid var(--outline); font-weight: 700; font-size: 0.95rem; }

@@ -119,4 +119,8 @@ export const GAME_VIEWS: Record<GameId, { Tv: Lazy<TvGameProps<any>>; Phone: Laz
     Tv: lazy(() => import("./dicederby/DiceDerbyTv")),
     Phone: lazy(() => import("./dicederby/DiceDerbyPhone")),
   },
+  bombsquad: {
+    Tv: lazy(() => import("./bombsquad/BombSquadTv")),
+    Phone: lazy(() => import("./bombsquad/BombSquadPhone")),
+  },
 };
