@@ -1,0 +1,197 @@
+/* ── Full Moon — TV ───────────────────────────────────────────────────────── */
+
+/* The sky is a fixed layer with the backdrop's z-index but later in the DOM,
+   so it paints over the theme backdrop and under the stage: night falls on the
+   scene without dimming the content. Layers cross-fade between phases. */
+.fm-sky { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.fm-sky-layer { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s var(--ease-out); }
+.fm-sky-dusk { background: linear-gradient(to bottom, color-mix(in srgb, var(--night-950) 55%, transparent), color-mix(in srgb, var(--grape-700) 22%, transparent)); }
+.fm-sky-night {
+  background:
+    radial-gradient(circle at 80% 17%, color-mix(in srgb, var(--sky-300) 20%, transparent), transparent 28%),
+    linear-gradient(to bottom, color-mix(in srgb, var(--night-950) 92%, transparent), color-mix(in srgb, var(--ink-950) 82%, transparent));
+}
+.fm-sky-dawn {
+  background: linear-gradient(to top, color-mix(in srgb, var(--tangerine-500) 50%, transparent), color-mix(in srgb, var(--pink-500) 24%, transparent) 45%, color-mix(in srgb, var(--night-900) 45%, transparent));
+}
+.fm-sky.is-dusk .fm-sky-dusk,
+.fm-sky.is-night .fm-sky-night,
+.fm-sky.is-blood .fm-sky-night,
+.fm-sky.is-dawn .fm-sky-dawn { opacity: 1; }
+
+.fm-stars { position: absolute; inset: 0 0 35%; opacity: 0; transition: opacity 2s var(--ease-out); }
+.fm-stars::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, var(--cream-50) 0 0.1em, transparent 0.16em),
+    radial-gradient(circle, var(--sun-300) 0 0.08em, transparent 0.14em),
+    radial-gradient(circle, var(--cream-100) 0 0.12em, transparent 0.18em);
+  background-size: 11em 8em, 17em 12em, 23em 15em;
+  background-position: 0 0, 6em 4em, 13em 2em;
+  animation: fm-twinkle 3.2s ease-in-out infinite alternate;
+}
+.fm-sky.is-night .fm-stars,
+.fm-sky.is-blood .fm-stars { opacity: 1; }
+
+.fm-moon {
+  position: absolute;
+  top: 8%;
+  right: 14%;
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 34%, var(--cream-50), var(--cream-200) 58%, var(--cream-300));
+  box-shadow: 0 0 2.6em 0.9em color-mix(in srgb, var(--cream-100) 40%, transparent);
+  opacity: 0;
+  transform: translateY(5em) scale(0.8);
+  transition: opacity 1.6s var(--ease-out), transform 1.8s var(--ease-out);
+}
+.fm-moon::before,
+.fm-moon::after { content: ""; position: absolute; border-radius: 50%; background: color-mix(in srgb, var(--cream-300) 80%, transparent); }
+.fm-moon::before { width: 1.6em; height: 1.6em; top: 2.2em; left: 4.4em; }
+.fm-moon::after { width: 1em; height: 1em; top: 4.8em; left: 2.3em; }
+.fm-sky.is-dusk .fm-moon { opacity: 0.5; transform: translateY(2.5em) scale(0.9); }
+.fm-sky.is-night .fm-moon,
+.fm-sky.is-blood .fm-moon { opacity: 1; transform: none; }
+.fm-sky.is-blood .fm-moon {
+  background: radial-gradient(circle at 36% 34%, var(--cherry-300), var(--cherry-500) 58%, var(--cherry-700));
+  box-shadow: 0 0 3em 1.1em color-mix(in srgb, var(--cherry-500) 50%, transparent);
+}
+.fm-sky.is-blood .fm-moon::before,
+.fm-sky.is-blood .fm-moon::after { background: color-mix(in srgb, var(--cherry-700) 70%, transparent); }
+
+/* Stage: a header row, then the village. */
+.fm-stage { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 0.4em; min-height: 0; }
+.fm-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8em; min-height: 4.8em; }
+.fm-head-timer { margin-left: auto; display: grid; }
+.fm-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.2em 0.8em;
+  border-radius: 1em;
+  font-weight: 800;
+  font-size: 1.25em;
+  white-space: nowrap;
+  color: var(--on-bg);
+  background: color-mix(in srgb, var(--bg-deep) 60%, transparent);
+  border: 0.1em solid color-mix(in srgb, var(--on-bg) 30%, transparent);
+}
+.fm-banner { font-family: var(--font-display); font-size: 3.2em; line-height: 1; color: var(--accent); -webkit-text-stroke: 0.08em var(--ink-900); paint-order: stroke fill; text-shadow: 0 0.08em 0 var(--ink-900); }
+.fm-lineup { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5em; }
+.fm-intro .fm-lineup { font-size: 1.25em; }
+.fm-rules-note { font-weight: 700; }
+
+/* The village: seats on a U-shaped arc around Telly (positions come from the view). */
+.fm-town { position: relative; width: min(100%, 80em); height: 26.5em; justify-self: center; align-self: center; }
+.fm-narrator { position: absolute; left: 50%; top: 0; z-index: 1; transform: translateX(-50%); width: 36em; display: flex; align-items: flex-start; gap: 0.7em; }
+.fm-telly { flex: none; width: 5.6em; height: 6.45em; }
+.fm-bubble { flex: 1; margin-top: 0.3em; font-size: 1.35em; line-height: 1.25; padding: 0.55em 0.85em; border-width: 0.11em; border-radius: 0.8em; }
+/* Tail on the left, pointing at Telly. */
+.fm-bubble::after {
+  left: -0.45em;
+  top: 1em;
+  bottom: auto;
+  width: 0.8em;
+  height: 0.8em;
+  border-right: 0;
+  border-left: 0.11em solid var(--outline);
+  border-bottom: 0.11em solid var(--outline);
+  border-radius: 0 0 0 0.15em;
+  transform: rotate(45deg);
+}
+
+.fm-seat { position: absolute; width: 9.5em; transform: translateX(-50%); display: grid; justify-items: center; align-content: start; gap: 0.2em; text-align: center; }
+.fm-seat-body { position: relative; display: grid; place-items: center; border-radius: 50%; }
+.fm-seat .char { transition: filter 1.2s var(--ease-out); }
+.fm-seat .token-name { font-size: 0.95em; }
+.fm-seat.is-away { opacity: 0.6; }
+.fm-seat.is-dead .token-name { opacity: 0.7; }
+.fm-seat.is-flagged .fm-seat-body { animation: fm-alarm 1.1s ease-in-out infinite alternate; }
+.fm-seat-missing { width: 5em; height: 5em; display: grid; place-items: center; font-family: var(--font-display); font-size: 1.4em; color: var(--on-bg-muted); }
+.fm-town.is-night .fm-seat.is-alive .char { filter: brightness(0.68) saturate(0.8); }
+.fm-zzz {
+  position: absolute;
+  top: -0.3em;
+  right: -0.1em;
+  font-family: var(--font-display);
+  font-size: 1.3em;
+  color: var(--sky-300);
+  -webkit-text-stroke: 0.06em var(--ink-900);
+  paint-order: stroke fill;
+  animation: fm-zzz 2.6s ease-in-out infinite;
+}
+.fm-zzz small { font-size: 0.7em; margin-left: 0.1em; vertical-align: super; }
+.fm-ghost-mark { position: absolute; top: -0.4em; left: -0.2em; font-size: 1.6em; animation: float-y 1.8s ease-in-out infinite alternate; }
+.fm-votes { display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-end; gap: 0.1em; max-width: 9em; min-height: 1.9em; }
+.fm-points { font-family: var(--font-display); font-size: 1.35em; color: var(--success); -webkit-text-stroke: 0.08em var(--ink-900); paint-order: stroke fill; animation: pop-in 0.5s var(--ease-pop) both; }
+.fm-points.is-zero { color: var(--on-bg-muted); }
+
+/* Role tags: TV seats, the line-up and the ghost list. Sized in em, so they fit both screens. */
+.fm-role-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.12em 0.6em;
+  border-radius: 1em;
+  border: 0.12em solid var(--outline);
+  font-weight: 800;
+  font-size: 0.95em;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--text);
+  background: var(--sun-300);
+}
+.fm-role-tag.is-wolf { background: var(--danger); color: var(--on-primary); }
+.fm-role-tag.is-seer { background: var(--grape-300); }
+.fm-role-tag.is-doctor { background: var(--mint-300); }
+.fm-seat .fm-role-tag { animation: pop-in 0.5s var(--ease-pop) both; }
+
+@keyframes fm-twinkle { from { opacity: 0.55; } to { opacity: 1; } }
+@keyframes fm-zzz {
+  0% { opacity: 0; transform: translate(0, 0.3em) scale(0.8); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translate(0.5em, -0.8em) scale(1.1); }
+}
+@keyframes fm-alarm {
+  from { box-shadow: 0 0 0 0.18em var(--danger), 0 0 0.6em 0.2em color-mix(in srgb, var(--danger) 40%, transparent); }
+  to { box-shadow: 0 0 0 0.18em var(--danger), 0 0 1.6em 0.6em color-mix(in srgb, var(--danger) 65%, transparent); }
+}
+
+/* ── Full Moon — phone ────────────────────────────────────────────────────── */
+
+/* Role cards, night pickers and visions share one moonlit look for every
+   role, so a glance at a neighbour's screen gives nothing away. */
+.phone-card.fm-role-card,
+.phone-card.fm-night,
+.phone-card.fm-vision { background: linear-gradient(to bottom, var(--night-700), var(--night-900)); color: var(--on-bg); }
+.phone-card.fm-night .phone-card-title,
+.phone-card.fm-vision .phone-card-title { color: var(--on-bg); }
+.fm-role-card,
+.fm-vision,
+.fm-ghost { justify-items: center; text-align: center; }
+.fm-kicker { font-size: var(--fs-sm); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--on-bg-muted); }
+.fm-role-emoji { font-size: 4.6rem; line-height: 1.1; animation: pop-in var(--dur-3) var(--ease-pop) both; }
+.fm-role-name { font-family: var(--font-display); font-size: 2.6rem; line-height: 1; color: var(--accent); -webkit-text-stroke: 6px var(--ink-900); paint-order: stroke fill; }
+.fm-role-goal { font-weight: 700; font-size: 1.1rem; max-width: 30ch; }
+.fm-role-extra { display: grid; justify-items: center; gap: 8px; width: 100%; padding-top: 12px; border-top: 2px dashed color-mix(in srgb, var(--on-bg) 25%, transparent); }
+.fm-pack { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.fm-pack-mate { display: grid; justify-items: center; gap: 2px; font-weight: 800; }
+.fm-visions { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; width: 100%; }
+.fm-visions li { display: flex; align-items: center; gap: 8px; font-weight: 700; text-align: left; }
+.fm-hint { color: var(--on-bg-muted); font-weight: 600; }
+.fm-strong { font-weight: 700; }
+.fm-center { text-align: center; }
+.fm-night .choice .badge { flex: none; }
+.fm-skip-icon { flex: none; width: 44px; text-align: center; font-size: 1.6rem; line-height: 1; }
+.fm-role-toggle { display: grid; justify-items: center; gap: 12px; }
+.fm-role-toggle .fm-role-card { width: 100%; }
+.fm-ghost-emoji { font-size: 4rem; line-height: 1; animation: float-y 1.6s ease-in-out infinite alternate; }
+.fm-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-weight: 700; }
+.fm-whoswho li { display: flex; align-items: center; gap: 10px; }
+.fm-whoswho li.is-dead { opacity: 0.6; }
+.fm-breakdown { gap: 4px; min-width: 15rem; }
+.fm-breakdown li { display: flex; justify-content: space-between; gap: 16px; }
+.fm-breakdown li.is-total { padding-top: 6px; border-top: 2px solid color-mix(in srgb, var(--on-bg) 30%, transparent); font-family: var(--font-display); font-size: 1.3rem; }

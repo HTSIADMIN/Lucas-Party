@@ -1,0 +1,26 @@
+/* Word Bomb — TV */
+.wb-stage { display: grid; gap: 1em; justify-items: center; align-content: center; min-height: 0; }
+.wb-center { display: grid; justify-items: center; gap: 0.6em; }
+.wb-bomb { position: relative; width: 12em; height: 12em; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 35% 30%, #5a5a70, #1b1033 70%); border: 0.25em solid var(--outline); box-shadow: 0 0.4em 0 var(--outline); animation: wb-pulse 0.8s ease-in-out infinite; }
+.wb-fuse { position: absolute; top: -1.6em; right: 1.6em; width: 0.6em; height: 2.2em; border-radius: 0.3em; background: #c9a36b; transform: rotate(25deg); }
+.wb-fuse::after { content: ""; position: absolute; top: -0.8em; left: -0.4em; width: 1.4em; height: 1.4em; border-radius: 50%; background: radial-gradient(circle, #fff 0 20%, #ffd23f 30%, #ff8a3d 60%, transparent 70%); animation: wb-spark 0.25s linear infinite alternate; }
+.wb-syllable { font-family: var(--font-display); font-size: 4em; color: #fff; letter-spacing: 0.06em; animation: pop-in 0.3s var(--ease-pop) both; }
+.wb-boom { font-family: var(--font-display); font-size: 8em; line-height: 1; color: #ff8a3d; -webkit-text-stroke: 0.06em var(--ink-900); paint-order: stroke fill; }
+.wb-ring { display: flex; flex-wrap: wrap; gap: 1.2em; justify-content: center; }
+.wb-seat { display: grid; justify-items: center; gap: 0.2em; padding: 0.5em; border-radius: 1em; }
+.wb-seat.is-holding { background: color-mix(in srgb, var(--danger) 30%, transparent); box-shadow: 0 0 0 0.18em var(--danger); }
+.wb-seat.is-out { opacity: 0.55; }
+.wb-hearts { color: #ff4d5e; font-size: 1.2em; letter-spacing: 0.1em; }
+.wb-words { display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: center; max-width: 54em; }
+.wb-word { font-family: var(--font-display); font-size: 1.3em; letter-spacing: 0.04em; }
+.wb-word.is-rejected { text-decoration: line-through; background: var(--danger); color: #fff; }
+.wb-challenges { font-size: 0.8em; }
+@keyframes wb-pulse { 50% { transform: scale(1.05); } }
+@keyframes wb-spark { to { transform: scale(1.3) rotate(30deg); } }
+
+/* Word Bomb — phone */
+.wb-form { text-align: center; }
+.wb-phone-syllable { font-family: var(--font-display); font-size: 3.2rem; letter-spacing: 0.08em; color: var(--primary-strong, var(--primary)); }
+.wb-phone-syllable.is-small { font-size: 2rem; margin: 0; }
+.wb-input { font-size: 1.6rem; text-align: center; text-transform: uppercase; letter-spacing: 0.06em; }
+.wb-lives { color: #ff4d5e; font-size: 1.4rem; letter-spacing: 0.1em; margin: 0; }

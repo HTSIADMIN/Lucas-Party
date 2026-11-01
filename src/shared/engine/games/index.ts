@@ -25,6 +25,7 @@ import { emojipitch } from "./emojipitch";
 import { court } from "./court";
 import { dicederby } from "./dicederby";
 import { bombsquad } from "./bombsquad";
+import { wordbomb } from "./wordbomb";
 
 // To add a game: implement GameDefinition, register it here, add its id to
 // LIVE_GAME_IDS + GAME_CATALOG in @party/shared, and add TV/phone views in
@@ -55,4 +56,5 @@ export const GAMES: Record<GameId, GameDefinition<any>> = {
   court,
   dicederby,
   bombsquad,
+  wordbomb,
 };

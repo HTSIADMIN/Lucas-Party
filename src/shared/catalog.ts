@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby", "bombsquad"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby", "bombsquad", "wordbomb"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -244,18 +244,19 @@ export const GAME_CATALOG: GameMeta[] = [
     inspiredBy: "Telestrations / Gartic Phone",
   },
   {
-    id: "wordbomb", name: "Word Bomb", status: "soon",
+    id: "wordbomb", name: "Word Bomb", status: "live",
     tagline: "Type fast or go boom.",
-    description: "The bomb comes to you with three letters. Type a word that contains them before it explodes, then pass it on.",
+    description: "The bomb comes to you with a few letters. Type a real word that contains them to pass it on before the hidden fuse runs out. Made-up words? The room can call you out — if half of them say \"No way!\", you lose a life. Last one standing wins.",
     players: [2, 8], minutes: [5, 10], tags: ["words", "reflex"], accent: "#FF5A5F",
     howTo: ["Get the bomb and a letter combo.", "Type a real word containing it.", "Don't be holding it when it blows."],
+    options: [{ key: "lives", label: "Lives", default: 2, choices: [{ value: 1, label: "1" }, { value: 2, label: "2" }, { value: 3, label: "3" }] }],
     inspiredBy: "JKLM BombParty",
   },
   {
     id: "fullmoon", name: "Full Moon", status: "live",
     tagline: "Someone in this village is not who they seem.",
     description: "A narrated night-and-day social deduction game. Secret roles and night moves live on your phone; the TV runs the village. Werewolves hunt at night, the seer peeks, the doctor saves — and by day the village argues and votes someone out.",
-    players: [5, 8], minutes: [15, 25], tags: ["deduction", "bluffing"], accent: "#7C45E0",
+    players: [5, 8], minutes: [8, 15], tags: ["deduction", "bluffing"], accent: "#7C45E0",
     howTo: ["Check your secret role.", "Act at night, argue by day.", "Vote someone out of the village."],
     inspiredBy: "Werewolf / Mafia",
   },
