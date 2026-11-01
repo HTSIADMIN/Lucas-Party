@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -99,7 +99,7 @@ export const GAME_CATALOG: GameMeta[] = [
     id: "liarsdice", name: "Liar's Dice", status: "live",
     tagline: "Your dice are secret. Your bluff isn't.",
     description: "Everyone rolls hidden dice on their phone. Take turns raising the bid on how many of a face are on the whole table — or call LIAR! Whoever's wrong loses a die. Last player with dice wins.",
-    players: [2, 8], minutes: [10, 20], tags: ["bluffing", "casino"], accent: "#FFD23F",
+    players: [2, 8], minutes: [10, 25], tags: ["bluffing", "casino"], accent: "#FFD23F",
     howTo: ["Peek at your secret dice.", "Raise the bid: more dice, or a higher face.", "Call LIAR! when you don't buy it."],
     options: [{ key: "dice", label: "Dice each", default: 5, choices: [{ value: 3, label: "3" }, { value: 4, label: "4" }, { value: 5, label: "5" }] }],
     inspiredBy: "Traditional Liar's Dice / Perudo",
@@ -150,37 +150,69 @@ export const GAME_CATALOG: GameMeta[] = [
     inspiredBy: "Our Saloon Showdown + Stop the Clock minigame ideas",
   },
 
+  {
+    id: "crowdpleaser", name: "Crowd Pleaser", status: "live",
+    tagline: "Know your crowd.",
+    description: "Either/or polls about everything from pineapple pizza to time travel. Pick your side, then predict how the room split. Nail it exactly for big points — or be the lone wolf for a bonus.",
+    players: [3, 8], minutes: [6, 10], tags: ["voting"], accent: "#3FB7FF",
+    howTo: ["Pick a side on the poll.", "Predict how many picked the first option.", "Closest prediction scores."],
+    options: [{ key: "rounds", label: "Polls", default: 8, choices: [{ value: 6, label: "6" }, { value: 8, label: "8" }, { value: 10, label: "10" }] }],
+    inspiredBy: "Our Crowd Pleaser idea",
+  },
+  {
+    id: "liedetector", name: "Lie Detector", status: "live",
+    tagline: "Truth or lie? Look them in the eye.",
+    description: "One player gets a question about themselves, secretly picks truth or lie, and answers out loud while the polygraph twitches. Spot the liar to score — or fool the whole room.",
+    players: [3, 8], minutes: [8, 15], tags: ["bluffing", "voting"], accent: "#FF4D5E",
+    howTo: ["Secretly choose truth or lie.", "Answer the question out loud.", "Everyone votes: truth or lie?"],
+    options: [{ key: "rounds", label: "Rounds", default: 0, choices: [{ value: 6, label: "6" }, { value: 10, label: "10" }, { value: 0, label: "Everyone" }] }],
+    inspiredBy: "Our Lie Detector Telly idea",
+  },
+
+  {
+    id: "trivia", name: "Telly Trivia", status: "live",
+    tagline: "Fast fingers, big brain.",
+    description: "Quick-fire multiple-choice general knowledge — space, animals, geography, science and more. Answer on your phone; the faster you lock in the right answer, the more it's worth. The final question counts double.",
+    players: [1, 8], minutes: [6, 12], tags: ["trivia"], accent: "#FFC93C",
+    howTo: ["Read the question on the TV.", "Tap your answer on your phone — fast!", "Right and quick scores the most."],
+    options: [{ key: "rounds", label: "Questions", default: 12, choices: [{ value: 9, label: "9" }, { value: 12, label: "12" }, { value: 18, label: "18" }] }],
+    inspiredBy: "Classic pub quiz",
+  },
+
   // ── Coming soon (roadmap order, easiest first) ─────────────────────────
   {
-    id: "holdem", name: "Hold'em Night", status: "soon",
+    id: "holdem", name: "Hold'em Night", status: "live",
     tagline: "The TV is the table. Your phone is your hand.",
-    description: "Texas Hold'em with party chips: hole cards stay private on your phone while the flop, turn and river land on the big screen.",
+    description: "Texas Hold'em with party chips: your two hole cards stay private on your phone while the flop, turn and river land on the big screen. Blinds creep up, bluffs get wild, and the last stack standing wins.",
     players: [2, 8], minutes: [20, 45], tags: ["casino", "bluffing"], accent: "#45D483",
-    howTo: ["Peek at your two cards on your phone.", "Check, bet, raise or fold.", "Last stack standing wins."],
+    howTo: ["Peek at your two cards on your phone.", "Check, call, raise or fold.", "Last stack standing wins."],
+    options: [{ key: "hands", label: "Length", default: 0, choices: [{ value: 12, label: "12 hands" }, { value: 24, label: "24 hands" }, { value: 0, label: "Last stack" }] }],
     inspiredBy: "Our poker table, rebuilt for phones + TV",
   },
   {
-    id: "fibfactory", name: "Fib Factory", status: "soon",
+    id: "fibfactory", name: "Fib Factory", status: "live",
     tagline: "Write a lie. Find the truth.",
-    description: "A weird-but-true fact appears with a blank. Everyone writes a convincing fake answer, then tries to pick the real one out of the lineup.",
-    players: [3, 8], minutes: [12, 18], tags: ["bluffing", "writing", "trivia"], accent: "#FF9A3C",
-    howTo: ["Fill the blank with a believable lie.", "Find the truth among the fibs.", "Score for every friend you fool."],
-    inspiredBy: "Fibbage",
+    description: "How well do you know your friends? Each round one player answers a question about themselves truthfully while everyone else writes a lie that sounds just like them. Then pick out the truth — and fool your friends with your fib.",
+    players: [3, 8], minutes: [12, 18], tags: ["bluffing", "writing"], accent: "#FF9A3C",
+    howTo: ["The spotlight player tells the truth.", "Everyone else writes a believable lie.", "Find the truth. Score for every friend you fool."],
+    options: [{ key: "rounds", label: "Rounds", default: 0, choices: [{ value: 6, label: "6" }, { value: 10, label: "10" }, { value: 0, label: "Everyone" }] }],
+    inspiredBy: "Fibbage (Enough About You)",
   },
   {
-    id: "doodlefraud", name: "Doodle Fraud", status: "soon",
+    id: "doodlefraud", name: "Doodle Fraud", status: "live",
     tagline: "Bad drawings, worse guesses.",
-    description: "Draw a bizarre prompt on your phone. Everyone invents a fake title for your masterpiece, then tries to spot the real one.",
+    description: "Everyone draws a bizarre secret prompt on their phone. Then, one drawing at a time, the room writes fake titles and tries to spot the real one. Fool your friends with a lie, find the truth, and draw well enough to be recognised.",
     players: [3, 8], minutes: [15, 20], tags: ["drawing", "bluffing"], accent: "#A46BFF",
     howTo: ["Draw your secret prompt.", "Write fake titles for other drawings.", "Pick the real title to score."],
     inspiredBy: "Drawful",
   },
   {
-    id: "scribblechain", name: "Scribble Chain", status: "soon",
+    id: "scribblechain", name: "Scribble Chain", status: "live",
     tagline: "Write it. Draw it. Lose it.",
-    description: "A sentence becomes a drawing becomes a sentence becomes chaos. Watch every chain unravel on the TV at the end.",
+    description: "A sentence becomes a drawing becomes a sentence becomes chaos. Every chain travels the whole room, then replays on the TV — and everyone votes for the best moment in each one.",
     players: [3, 8], minutes: [10, 15], tags: ["drawing", "writing"], accent: "#2ED3D3",
-    howTo: ["Write a silly sentence.", "Draw the sentence you're handed — then describe the drawing.", "Watch the chains replay on the TV."],
+    howTo: ["Write a silly sentence.", "Draw the sentence you're handed — then describe the drawing.", "Watch the chains replay and vote for the best moment."],
+    options: [{ key: "rounds", label: "Steps", default: 0, choices: [{ value: 4, label: "4" }, { value: 6, label: "6" }, { value: 0, label: "Everyone" }] }],
     inspiredBy: "Telestrations / Gartic Phone",
   },
   {
@@ -192,19 +224,20 @@ export const GAME_CATALOG: GameMeta[] = [
     inspiredBy: "JKLM BombParty",
   },
   {
-    id: "fullmoon", name: "Full Moon", status: "soon",
+    id: "fullmoon", name: "Full Moon", status: "live",
     tagline: "Someone in this village is not who they seem.",
-    description: "A narrated night-and-day social deduction game. Secret roles and night moves live on your phone; the TV runs the village trial.",
+    description: "A narrated night-and-day social deduction game. Secret roles and night moves live on your phone; the TV runs the village. Werewolves hunt at night, the seer peeks, the doctor saves — and by day the village argues and votes someone out.",
     players: [5, 8], minutes: [15, 25], tags: ["deduction", "bluffing"], accent: "#7C45E0",
     howTo: ["Check your secret role.", "Act at night, argue by day.", "Vote someone out of the village."],
     inspiredBy: "Werewolf / Mafia",
   },
   {
-    id: "mashbash", name: "Mash Bash", status: "soon",
+    id: "mashbash", name: "Mash Bash", status: "live",
     tagline: "Tiny games. Huge rivalries.",
-    description: "A dice-board party where every turn ends in a lightning minigame: tap races, timing tests, memory flips and secret picks.",
-    players: [2, 8], minutes: [15, 30], tags: ["reflex"], accent: "#4F7BFF",
-    howTo: ["Roll and move around the board.", "Play a 15-second minigame on your phone.", "Grab the most stars."],
+    description: "A race across the board where every round is a lightning minigame on your phone: tap races, quick draws, stop-the-clock, number bluffs and memory flashes. Win rounds to move further, dodge the slip spaces, and be first to the finish.",
+    players: [2, 8], minutes: [10, 15], tags: ["reflex"], accent: "#4F7BFF",
+    howTo: ["Play a quick minigame on your phone.", "Finish places move you along the board.", "First to the finish line wins."],
+    options: [{ key: "rounds", label: "Rounds", default: 10, choices: [{ value: 6, label: "6" }, { value: 10, label: "10" }, { value: 14, label: "14" }] }],
     inspiredBy: "Mario Party (tap/timing minigames only)",
   },
   {

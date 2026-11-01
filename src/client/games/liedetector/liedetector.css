@@ -1,0 +1,26 @@
+/* Lie Detector — TV */
+.lie-stage { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 1.6em; align-items: center; min-height: 0; }
+.lie-witness { display: grid; justify-items: center; gap: 0.5em; padding: 1.4em 1em; border-radius: 1em; background: color-mix(in srgb, var(--surface) 25%, transparent); border: 0.14em dashed color-mix(in srgb, var(--on-bg) 40%, transparent); }
+.lie-side { display: grid; gap: 0.8em; justify-items: center; text-align: center; align-content: center; }
+.lie-question { font-family: var(--font-display); font-size: 2.6em; line-height: 1.1; max-width: 16em; padding: 0.5em 0.9em; border-radius: 0.6em; border-width: 0.12em; box-shadow: 0 0.12em 0 var(--outline); }
+.lie-question.is-small { font-size: 1.8em; }
+.lie-polygraph { width: min(26em, 100%); height: 4em; padding: 0.3em; border-radius: 0.6em; background: #fffbe8; border: 0.14em solid var(--outline); overflow: hidden; background-image: repeating-linear-gradient(90deg, rgba(27, 16, 51, 0.08) 0 1px, transparent 1px 2em); }
+.lie-polygraph svg { width: 200%; height: 100%; animation: lie-scroll 2.2s linear infinite; }
+.lie-polygraph.is-calm svg { animation-duration: 6s; }
+.lie-trace { fill: none; stroke: #ff4d5e; stroke-width: 3; stroke-linejoin: round; }
+.lie-reveal { gap: 0.8em; }
+.lie-stamp { font-family: var(--font-display); font-size: 7em; line-height: 1; padding: 0.05em 0.35em; border: 0.08em solid currentColor; border-radius: 0.15em; transform: rotate(-8deg); background: rgba(255, 255, 255, 0.85); }
+.lie-stamp.is-lie { color: var(--danger); }
+.lie-stamp.is-truth { color: #1f9d5c; }
+.lie-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; width: min(44em, 100%); }
+.lie-column { display: grid; justify-items: center; gap: 0.4em; padding: 0.8em; border-radius: 1em; background: var(--surface); color: var(--text); border: 0.14em solid var(--outline); font-size: 1.2em; }
+.lie-column.is-right { box-shadow: 0 0 0 0.2em var(--success); }
+.lie-faces { display: flex; flex-wrap: wrap; gap: 0.3em; justify-content: center; min-height: 3em; }
+@keyframes lie-scroll { to { transform: translateX(-50%); } }
+
+/* Lie Detector — phone */
+.lie-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.lie-choice-btn { min-height: 110px; border-radius: var(--r-md); border: var(--ow) solid var(--outline); font-family: var(--font-display); font-size: 2rem; color: #fff; -webkit-text-stroke: 5px var(--ink-900); paint-order: stroke fill; cursor: pointer; box-shadow: var(--sh-1); }
+.lie-choice-btn:active { transform: translateY(2px); box-shadow: none; }
+.lie-choice-btn.is-truth { background: #2fdb9a; }
+.lie-choice-btn.is-lie { background: #ff4d5e; }

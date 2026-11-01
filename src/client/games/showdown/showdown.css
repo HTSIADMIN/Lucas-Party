@@ -1,0 +1,54 @@
+/* Saloon Showdown — TV */
+.sd-title { font-size: 5em; }
+.sd-target { color: var(--accent); }
+.sd-big { font-family: var(--font-display); font-size: 9em; line-height: 1; color: #fff; -webkit-text-stroke: 0.06em var(--ink-900); paint-order: stroke fill; text-shadow: 0 0.06em 0 var(--ink-900); }
+.sd-steady { animation: sd-breathe 1.4s ease-in-out infinite; }
+.sd-fake { color: var(--danger); animation: sd-shake 0.35s linear infinite; }
+/* The TV shows DRAW a beat after the phones so watching the TV is no shortcut. */
+.sd-draw { color: var(--success); animation: sd-draw-in 0.35s var(--ease-pop) 0.25s both; }
+.sd-clock { font-family: var(--font-display); font-size: 8em; line-height: 1; color: #fff; -webkit-text-stroke: 0.06em var(--ink-900); paint-order: stroke fill; transition: opacity 0.3s; }
+.sd-clock.is-dark { opacity: 0.35; }
+.sd-lineup { display: flex; flex-wrap: wrap; gap: 1.2em; justify-content: center; }
+.sd-slinger { position: relative; display: grid; justify-items: center; gap: 0.25em; padding-top: 1.2em; }
+.sd-tag { position: absolute; top: -0.2em; font-family: var(--font-display); font-size: 1em; padding: 0.1em 0.55em; border-radius: 1em; background: var(--success); color: var(--ink-900); border: 0.12em solid var(--outline); white-space: nowrap; animation: pop-in 0.35s var(--ease-pop) both; }
+.sd-tag.is-foul { background: var(--danger); color: #fff; }
+.sd-result { gap: 0.8em; }
+.sd-results { list-style: none; margin: 0; padding: 0.6em; display: grid; gap: 0.35em; width: min(44em, 100%); border-radius: 1em; border-width: 0.14em; }
+.sd-row { display: flex; align-items: center; gap: 0.7em; padding: 0.35em 0.6em; border-radius: 0.6em; font-weight: 800; font-size: 1.25em; }
+.sd-row.is-winner { background: color-mix(in srgb, var(--success) 30%, transparent); }
+.sd-row.is-foul { opacity: 0.75; }
+.sd-place { font-family: var(--font-display); width: 1.6em; text-align: center; }
+.sd-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sd-time small { color: var(--text-muted); font-size: 0.75em; }
+.sd-points { min-width: 3.2em; text-align: right; color: var(--success); }
+.sd-points.is-loss { color: var(--danger); }
+@keyframes sd-breathe { 50% { transform: scale(1.06); opacity: 0.8; } }
+@keyframes sd-shake { 0%, 100% { transform: translateX(0) rotate(-2deg); } 25% { transform: translateX(-0.04em) rotate(2deg); } 75% { transform: translateX(0.04em) rotate(-1deg); } }
+@keyframes sd-draw-in { from { opacity: 0; transform: scale(2.2); } }
+
+/* Saloon Showdown — phone */
+.sd-btn {
+  flex: 1;
+  min-height: 58vh;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  border-radius: 28px;
+  border: var(--ow) solid var(--outline);
+  box-shadow: var(--sh-2);
+  font-family: var(--font-display);
+  color: #fff;
+  -webkit-text-stroke: 5px var(--ink-900);
+  paint-order: stroke fill;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.sd-btn-label { font-size: 3.2rem; line-height: 1; }
+.sd-btn-clock { font-size: 2.4rem; }
+.sd-btn.is-wait { background: #3a2a5c; }
+.sd-btn.is-fake { background: #6b2a4a; animation: sd-shake 0.35s linear infinite; }
+.sd-btn.is-draw { background: var(--success); animation: pop-in 0.18s var(--ease-pop) both; }
+.sd-btn.is-stop { background: var(--danger); }

@@ -71,4 +71,40 @@ export const GAME_VIEWS: Record<GameId, { Tv: Lazy<TvGameProps<any>>; Phone: Laz
     Tv: lazy(() => import("./showdown/ShowdownTv")),
     Phone: lazy(() => import("./showdown/ShowdownPhone")),
   },
+  doodlefraud: {
+    Tv: lazy(() => import("./doodlefraud/DoodleFraudTv")),
+    Phone: lazy(() => import("./doodlefraud/DoodleFraudPhone")),
+  },
+  scribblechain: {
+    Tv: lazy(() => import("./scribblechain/ScribbleChainTv")),
+    Phone: lazy(() => import("./scribblechain/ScribbleChainPhone")),
+  },
+  fibfactory: {
+    Tv: lazy(() => import("./fibfactory/FibFactoryTv")),
+    Phone: lazy(() => import("./fibfactory/FibFactoryPhone")),
+  },
+  holdem: {
+    Tv: lazy(() => import("./holdem/HoldemTv")),
+    Phone: lazy(() => import("./holdem/HoldemPhone")),
+  },
+  fullmoon: {
+    Tv: lazy(() => import("./fullmoon/FullMoonTv")),
+    Phone: lazy(() => import("./fullmoon/FullMoonPhone")),
+  },
+  crowdpleaser: {
+    Tv: lazy(() => import("./crowdpleaser/CrowdPleaserTv")),
+    Phone: lazy(() => import("./crowdpleaser/CrowdPleaserPhone")),
+  },
+  liedetector: {
+    Tv: lazy(() => import("./liedetector/LieDetectorTv")),
+    Phone: lazy(() => import("./liedetector/LieDetectorPhone")),
+  },
+  mashbash: {
+    Tv: lazy(() => import("./mashbash/MashBashTv")),
+    Phone: lazy(() => import("./mashbash/MashBashPhone")),
+  },
+  trivia: {
+    Tv: lazy(() => import("./trivia/TriviaTv")),
+    Phone: lazy(() => import("./trivia/TriviaPhone")),
+  },
 };

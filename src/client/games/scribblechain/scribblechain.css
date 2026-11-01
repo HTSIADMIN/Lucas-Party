@@ -1,0 +1,26 @@
+/* Scribble Chain — TV */
+.sc-reveal { display: grid; gap: 0.9em; justify-items: center; align-content: start; min-height: 0; }
+.sc-reveal-head { display: grid; gap: 0.4em; justify-items: center; }
+.sc-strip { display: flex; flex-wrap: wrap; gap: 0.8em; justify-content: center; align-items: stretch; width: 100%; }
+.sc-entry {
+  position: relative;
+  width: 11em;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.4em;
+  padding: 0.6em;
+  border-radius: 0.9em;
+  background: var(--surface);
+  color: var(--text);
+  border: 0.14em solid var(--outline);
+  box-shadow: 0 0.2em 0 var(--outline);
+}
+.sc-entry.has-votes { box-shadow: 0 0.2em 0 var(--outline), 0 0 0 0.2em var(--success); }
+.sc-entry-num { position: absolute; top: -0.7em; left: -0.5em; width: 1.6em; height: 1.6em; display: grid; place-items: center; border-radius: 50%; background: var(--primary); color: #fff; font-family: var(--font-display); border: 0.12em solid var(--outline); }
+.sc-entry-text { display: grid; place-items: center; text-align: center; font-family: var(--font-display); font-size: 1.15em; line-height: 1.15; min-height: 6em; overflow-wrap: anywhere; }
+.sc-entry-drawing { border: 0.1em solid var(--outline); }
+.sc-entry-author { display: inline-flex; align-items: center; gap: 0.3em; font-weight: 800; font-size: 0.9em; color: var(--text-muted); }
+.sc-entry-votes { position: absolute; top: -0.7em; right: -0.5em; padding: 0.1em 0.5em; border-radius: 1em; background: var(--success); color: var(--ink-900); font-family: var(--font-display); border: 0.12em solid var(--outline); animation: pop-in 0.4s var(--ease-pop) both; }
+
+/* Scribble Chain — phone */
+.sc-phone-drawing { border: var(--ow) solid var(--outline); border-radius: var(--r-md); }

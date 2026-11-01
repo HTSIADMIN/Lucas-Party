@@ -1,0 +1,12 @@
+/* Doodle Fraud — TV */
+.df-stage { display: grid; grid-template-columns: 1fr 1.05fr; gap: 1.6em; align-items: center; min-height: 0; }
+.df-frame { position: relative; display: grid; gap: 0.6em; justify-items: center; padding: 1em; border-radius: 1em; background: #6b4232; border: 0.2em solid var(--outline); box-shadow: 0 0.35em 0 var(--outline), inset 0 0 0 0.4em #8a5a3c; }
+.df-drawing { width: min(30em, 100%); border: 0.16em solid var(--outline); }
+.df-artist { display: inline-flex; align-items: center; gap: 0.4em; font-family: var(--font-display); font-size: 1.3em; color: #fff; }
+.df-side { display: grid; gap: 0.8em; justify-items: center; text-align: center; align-content: center; }
+.df-options { display: grid; gap: 0.5em; width: min(34em, 100%); }
+.df-option { padding: 0.5em 0.9em; border-radius: 0.7em; background: var(--surface); color: var(--text); border: 0.14em solid var(--outline); box-shadow: 0 0.18em 0 var(--outline); font-family: var(--font-display); font-size: 1.45em; text-align: left; }
+.df-option.is-revealed { display: grid; gap: 0.2em; }
+.df-option.is-real { background: color-mix(in srgb, var(--success) 35%, var(--surface)); box-shadow: 0 0.18em 0 var(--outline), 0 0 0 0.2em var(--success); }
+.df-option-meta { display: flex; align-items: center; justify-content: space-between; gap: 0.6em; font-family: var(--font-body, inherit); font-size: 0.6em; font-weight: 800; color: var(--text-muted); }
+.df-pickers { display: flex; gap: 0.15em; flex-wrap: wrap; }

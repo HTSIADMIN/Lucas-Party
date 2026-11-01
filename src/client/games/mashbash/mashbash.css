@@ -1,0 +1,53 @@
+/* Mash Bash — TV */
+.mb-game-title { font-size: 4.6em; }
+.mb-big { font-family: var(--font-display); font-size: 8em; line-height: 1; color: #fff; -webkit-text-stroke: 0.06em var(--ink-900); paint-order: stroke fill; text-shadow: 0 0.06em 0 var(--ink-900); }
+.mb-big.is-dim { opacity: 0.35; }
+.mb-steady { animation: mb-breathe 1.4s ease-in-out infinite; }
+.mb-draw { color: var(--success); animation: mb-pop 0.35s var(--ease-pop) 0.25s both; }
+.mb-board { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); gap: 0.4em; width: min(60em, 100%); }
+.mb-cell { position: relative; min-height: 4.4em; padding: 0.3em; border-radius: 0.7em; background: var(--surface); color: var(--text); border: 0.13em solid var(--outline); box-shadow: 0 0.15em 0 var(--outline); display: grid; align-content: space-between; }
+.mb-cell.is-start, .mb-cell.is-finish { background: var(--accent); }
+.mb-cell.is-boost { background: color-mix(in srgb, var(--success) 45%, var(--surface)); }
+.mb-cell.is-slip { background: color-mix(in srgb, var(--danger) 35%, var(--surface)); }
+.mb-cell-label { font-family: var(--font-display); font-size: 0.85em; color: var(--text-muted); }
+.mb-cell.is-start .mb-cell-label, .mb-cell.is-finish .mb-cell-label { color: var(--ink-900); }
+.mb-cell-tokens { display: flex; flex-wrap: wrap; gap: 0.1em; justify-content: center; }
+.mb-token { display: inline-grid; border-radius: 50%; border: 0.12em solid transparent; }
+.mb-token.is-moving { animation: mb-pop 0.6s var(--ease-pop) both; }
+.mb-events { display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: center; }
+.mb-event { font-size: 1.15em; }
+.mb-event.is-boost { background: var(--success); }
+.mb-event.is-slip { background: var(--danger); color: #fff; }
+.mb-pads { display: grid; grid-template-columns: repeat(2, 7em); gap: 0.8em; }
+.mb-pad { display: grid; place-items: center; aspect-ratio: 1; border-radius: 1em; border: 0.16em solid var(--outline); font-size: 3em; color: rgba(27, 16, 51, 0.55); opacity: 0.45; transition: opacity 0.1s, transform 0.1s; }
+.mb-pad.is-lit { opacity: 1; transform: scale(1.08); box-shadow: 0 0 0 0.12em #fff, 0 0 1.2em rgba(255, 255, 255, 0.8); }
+.mb-pads.is-dim .mb-pad { opacity: 0.55; }
+.mb-result { gap: 0.8em; }
+.mb-results { list-style: none; margin: 0; padding: 0.6em; display: grid; gap: 0.35em; width: min(44em, 100%); border-radius: 1em; border-width: 0.14em; }
+.mb-row { display: flex; align-items: center; gap: 0.7em; padding: 0.35em 0.6em; border-radius: 0.6em; font-weight: 800; font-size: 1.2em; }
+.mb-row.is-winner { background: color-mix(in srgb, var(--success) 30%, transparent); }
+.mb-place { font-family: var(--font-display); width: 1.6em; text-align: center; }
+.mb-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mb-label { color: var(--text-muted); }
+.mb-move { min-width: 2.4em; text-align: right; color: var(--success); }
+@keyframes mb-breathe { 50% { transform: scale(1.06); opacity: 0.8; } }
+@keyframes mb-pop { from { opacity: 0; transform: scale(1.8); } }
+
+/* Mash Bash — phone */
+.mb-btn { flex: 1; min-height: 58vh; width: 100%; display: grid; place-content: center; gap: 10px; border-radius: 28px; border: var(--ow) solid var(--outline); box-shadow: var(--sh-2); font-family: var(--font-display); color: #fff; -webkit-text-stroke: 5px var(--ink-900); paint-order: stroke fill; cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+.mb-btn-big { font-size: 3.4rem; line-height: 1; }
+.mb-btn-small { font-size: 1.8rem; }
+.mb-btn.is-tap { background: var(--primary); }
+.mb-btn.is-tap:active { transform: scale(0.98); }
+.mb-btn.is-wait { background: #3a2a5c; }
+.mb-btn.is-draw { background: var(--success); }
+.mb-btn.is-stop { background: var(--danger); }
+.mb-numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.mb-number { aspect-ratio: 1; border-radius: var(--r-md); border: var(--ow) solid var(--outline); background: var(--surface); color: var(--text); font-family: var(--font-display); font-size: 2rem; cursor: pointer; box-shadow: var(--sh-1); }
+.mb-number:active { transform: translateY(2px); box-shadow: none; }
+.mb-pads.is-phone { grid-template-columns: repeat(2, 1fr); width: 100%; }
+.mb-pads.is-phone .mb-pad { opacity: 1; font-size: 2.6rem; cursor: pointer; }
+.mb-pads.is-phone .mb-pad:active { transform: scale(0.95); }
+.mb-dots { display: flex; gap: 8px; justify-content: center; }
+.mb-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--outline); background: var(--surface); }
+.mb-dot.is-on { background: var(--success); }
