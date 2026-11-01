@@ -127,4 +127,8 @@ export const GAME_VIEWS: Record<GameId, { Tv: Lazy<TvGameProps<any>>; Phone: Laz
     Tv: lazy(() => import("./wordbomb/WordBombTv")),
     Phone: lazy(() => import("./wordbomb/WordBombPhone")),
   },
+  roulette: {
+    Tv: lazy(() => import("./roulette/RouletteTv")),
+    Phone: lazy(() => import("./roulette/RoulettePhone")),
+  },
 };

@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby", "bombsquad", "wordbomb"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby", "bombsquad", "wordbomb", "roulette"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -205,6 +205,16 @@ export const GAME_CATALOG: GameMeta[] = [
     players: [2, 8], minutes: [10, 15], tags: ["casino", "voting"], accent: "#2FDB9A",
     howTo: ["Secretly pick the Derby winner.", "Each leg, bet chips on who'll be in front.", "Watch the stacks tumble. Most chips wins."],
     inspiredBy: "Camel Up-style betting race (our Dice Derby idea)",
+  },
+
+  {
+    id: "roulette", name: "Roulette Royale", status: "live",
+    tagline: "Red, black, or the hot number?",
+    description: "The whole room at one roulette table. Bet party chips from your phone — colours, odds and evens, dozens or a single number — and watch the wheel spin on the TV. Every spin has a hot number that pays 50 to 1.",
+    players: [1, 8], minutes: [8, 12], tags: ["casino"], accent: "#E0455A",
+    howTo: ["Tap chips onto the table from your phone.", "Watch the wheel spin on the TV.", "Hit the hot number for 50 to 1."],
+    options: [{ key: "rounds", label: "Spins", default: 8, choices: [{ value: 6, label: "6" }, { value: 8, label: "8" }, { value: 12, label: "12" }] }],
+    inspiredBy: "Our roulette table, rebuilt for the room",
   },
 
   // ── Coming soon (roadmap order, easiest first) ─────────────────────────

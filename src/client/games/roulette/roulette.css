@@ -1,0 +1,42 @@
+/* Roulette Royale — TV */
+.ro-stage { gap: 0.8em; }
+.ro-hot-pill { background: #ff8a3d; }
+.ro-table { display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto auto; gap: 0.3em; width: min(62em, 100%); padding: 0.7em; border-radius: 1em; background: #2e7d4f; border: 0.18em solid var(--outline); box-shadow: 0 0.3em 0 var(--outline), inset 0 0 0 0.3em #3a9a60; }
+.ro-zero { grid-row: 1; grid-column: 1; min-width: 3em; }
+.ro-numbers { grid-row: 1; grid-column: 2; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: repeat(3, auto); gap: 0.25em; }
+.ro-columns { grid-row: 1; grid-column: 3; display: grid; gap: 0.25em; }
+.ro-outside { grid-row: 2; grid-column: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.25em; }
+.ro-outside.is-even { grid-row: 3; grid-template-columns: repeat(6, 1fr); }
+.ro-spot { position: relative; display: grid; place-items: center; min-height: 2.6em; padding: 0.2em; border-radius: 0.35em; border: 0.1em solid rgba(255, 255, 255, 0.55); color: #fff; font-family: var(--font-display); font-size: 1.05em; background: rgba(0, 0, 0, 0.12); }
+.ro-spot.is-red { background: #e0455a; }
+.ro-spot.is-black { background: #1b1033; }
+.ro-zero { background: #1f9d5c !important; }
+.ro-spot.is-hot { box-shadow: 0 0 0 0.16em #ff8a3d, 0 0 0.8em #ff8a3d; }
+.ro-spot.is-won { box-shadow: 0 0 0 0.2em #fff, 0 0 1em #fff; }
+.ro-chips { position: absolute; bottom: -0.35em; right: -0.2em; display: inline-flex; align-items: center; gap: 0.1em; padding: 0 0.3em; border-radius: 1em; background: #fff; color: #1b1033; font-size: 0.7em; border: 0.1em solid var(--outline); }
+.ro-chip { width: 0.8em; height: 0.8em; border-radius: 50%; border: 0.1em solid var(--outline); }
+.ro-spin-stage { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.6em; align-items: center; min-height: 0; }
+.ro-wheel-wrap { position: relative; display: grid; justify-items: center; }
+.ro-pointer { position: absolute; top: -0.4em; z-index: 2; font-size: 2.4em; color: #fff; text-shadow: 0 0.1em 0 var(--ink-900); }
+.ro-wheel { width: min(28em, 100%); height: auto; filter: drop-shadow(0 0.35em 0 rgba(0, 0, 0, 0.35)); }
+.ro-wheel.is-spinning { animation: ro-spin 5.6s cubic-bezier(0.12, 0.7, 0.2, 1) forwards; }
+.ro-side { display: grid; gap: 0.8em; justify-items: center; text-align: center; }
+.ro-number { width: 2.2em; height: 2.2em; display: grid; place-items: center; border-radius: 50%; font-family: var(--font-display); font-size: 5em; color: #fff; border: 0.08em solid var(--outline); }
+.ro-payouts { display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: center; max-width: 32em; }
+.ro-up { background: var(--success); }
+.ro-down { background: var(--danger); color: #fff; }
+@keyframes ro-spin { from { transform: rotate(0deg); } to { transform: rotate(var(--spin)); } }
+
+/* Roulette Royale — phone */
+.ro-board { gap: 10px; }
+.ro-amounts { display: flex; gap: 6px; }
+.ro-amount { flex: 1; min-height: 44px; border-radius: 50%; aspect-ratio: 1; border: 3px dashed #fff; background: #e0455a; color: #fff; font-family: var(--font-display); font-size: 1rem; cursor: pointer; box-shadow: 0 0 0 2px var(--outline); }
+.ro-amount.is-on { background: #ffc93c; color: #1b1033; box-shadow: 0 0 0 3px var(--focus); }
+.ro-outside-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.ro-bet-btn { min-height: 44px; border-radius: 10px; border: 2px solid var(--outline); background: #2e7d4f; color: #fff; font-family: var(--font-display); font-size: 1rem; cursor: pointer; }
+.ro-bet-btn.is-red { background: #e0455a; }
+.ro-bet-btn.is-black { background: #1b1033; }
+.ro-number-btns { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.ro-num { aspect-ratio: 1; border-radius: 8px; border: 2px solid var(--outline); color: #fff; font-family: var(--font-display); font-size: 0.95rem; cursor: pointer; }
+.ro-num.is-hot { box-shadow: 0 0 0 3px #ff8a3d; }
+.ro-mybets { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
