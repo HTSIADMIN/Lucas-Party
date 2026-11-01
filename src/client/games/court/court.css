@@ -1,0 +1,29 @@
+/* Character Court — TV */
+.cc-charge { gap: 0.8em; }
+.cc-crime { font-family: var(--font-display); font-size: 2.4em; line-height: 1.15; text-align: center; max-width: 18em; padding: 0.5em 0.9em; border-radius: 0.6em; border-width: 0.12em; box-shadow: 0 0.12em 0 var(--outline); }
+.cc-crime.is-small { font-size: 1.6em; }
+.cc-lawyers { display: flex; gap: 1em; flex-wrap: wrap; justify-content: center; }
+.cc-lawyer { font-family: var(--font-display); font-size: 1.4em; padding: 0.25em 0.8em; border-radius: 1em; border: 0.12em solid var(--outline); color: #fff; -webkit-text-stroke: 0.04em var(--ink-900); paint-order: stroke fill; }
+.cc-lawyer.is-prosecution, .cc-case.is-prosecution .cc-case-label { background: #e0455a; }
+.cc-lawyer.is-defense, .cc-case.is-defense .cc-case-label { background: #2f8fe0; }
+.cc-trial { display: grid; gap: 0.8em; align-content: start; min-height: 0; }
+.cc-head { display: grid; justify-items: center; }
+.cc-cases { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1em; align-items: center; }
+.cc-case { display: grid; gap: 0.5em; padding: 0.9em; border-radius: 1em; background: var(--surface); color: var(--text); border: 0.16em solid var(--outline); box-shadow: 0 0.25em 0 var(--outline); min-height: 10em; align-content: start; transition: transform 0.3s, box-shadow 0.3s; }
+.cc-case.is-winner { transform: scale(1.03); box-shadow: 0 0.25em 0 var(--outline), 0 0 0 0.22em var(--accent); }
+.cc-case-label { justify-self: start; font-weight: 800; font-size: 0.95em; padding: 0.15em 0.6em; border-radius: 1em; color: #fff; }
+.cc-case-text { margin: 0; font-family: var(--font-display); font-size: 1.5em; line-height: 1.2; overflow-wrap: anywhere; }
+.cc-dock { display: grid; justify-items: center; gap: 0.3em; }
+.cc-voters { display: flex; flex-wrap: wrap; gap: 0.15em; align-items: center; }
+.cc-vote-count { margin-left: auto; font-family: var(--font-display); font-size: 1.6em; }
+.cc-verdict { font-family: var(--font-display); font-size: 5em; line-height: 1; padding: 0.05em 0.35em; border: 0.08em solid currentColor; border-radius: 0.15em; transform: rotate(-5deg); background: rgba(255, 255, 255, 0.88); }
+.cc-verdict.is-guilty { color: var(--danger); }
+.cc-verdict.is-innocent { color: #1f9d5c; }
+
+/* Character Court — phone */
+.cc-textarea { min-height: 110px; resize: vertical; font-size: 1.05rem; }
+.cc-vote { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cc-vote-btn { min-height: 100px; border-radius: var(--r-md); border: var(--ow) solid var(--outline); font-family: var(--font-display); font-size: 1.6rem; color: #fff; -webkit-text-stroke: 4px var(--ink-900); paint-order: stroke fill; cursor: pointer; box-shadow: var(--sh-1); }
+.cc-vote-btn:active { transform: translateY(2px); box-shadow: none; }
+.cc-vote-btn.is-guilty { background: #e0455a; }
+.cc-vote-btn.is-innocent { background: #2f8fe0; }

@@ -127,7 +127,7 @@ function nextRound(state: LdState, ctx: GameContext) {
   if (duel) state.headsUp = true;
   state.phase = "roll";
   ctx.setDeadline(ROLL_MS);
-  ctx.emit({ kind: "roll", sfx: duel ? "round.final" : "round.start", text: duel ? "Heads-up showdown!" : `Round ${state.round}`, haptic: 60 });
+  ctx.emit({ kind: "roll", sfx: duel ? "round.final" : "dice.roll", text: duel ? "Heads-up showdown!" : `Round ${state.round}`, haptic: 60 });
 }
 
 function beginTurn(state: LdState, ctx: GameContext, playerId: string) {

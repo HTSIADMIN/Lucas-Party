@@ -14,7 +14,7 @@ import {
   type LieTv,
   type LieVerdict,
 } from "@party/shared";
-import { asRecord, drawFresh, rankOf, sortedScores, type GameContext, type GameDefinition, type GamePlayer } from "../../types";
+import { asRecord, drawFresh, nextTurn, rankOf, sortedScores, type GameContext, type GameDefinition, type GamePlayer } from "../../types";
 import { QUESTIONS } from "./content";
 
 const INTRO_MS = 7000;
@@ -32,6 +32,7 @@ export interface LieState {
   round: number;
   totalRounds: number;
   order: string[];
+  turns: Record<string, number>;
   questions: string[];
   speakerId: string;
   choice: LieVerdict | null;
@@ -50,9 +51,7 @@ function voters(state: LieState): string[] {
 }
 
 function startRound(state: LieState, ctx: GameContext) {
-  const planned = (state.round - 1) % state.order.length;
-  const rotation = [...state.order.slice(planned), ...state.order.slice(0, planned)];
-  state.speakerId = rotation.find((id) => ctx.isConnected(id)) ?? rotation[0]!;
+  state.speakerId = nextTurn(state.order, state.turns, ctx.isConnected);
   state.choice = null;
   state.votes = {};
   state.gained = {};
@@ -100,6 +99,7 @@ export const liedetector: GameDefinition<LieState> = {
       round: 1,
       totalRounds,
       order: ctx.shuffle(ids),
+      turns: {},
       questions: drawFresh(ctx, "lie:questions", bank, (q) => q.text, totalRounds).map((q) => q.text),
       speakerId: ids[0]!,
       choice: null,

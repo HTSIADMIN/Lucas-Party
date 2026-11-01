@@ -15,7 +15,7 @@ import {
   type DialPlayer,
   type DialTv,
 } from "@party/shared";
-import { asRecord, drawFresh, rankOf, sortedScores, type GameContext, type GameDefinition, type GamePlayer } from "../../types";
+import { asRecord, drawFresh, nextTurn, rankOf, sortedScores, type GameContext, type GameDefinition, type GamePlayer } from "../../types";
 import { CARDS } from "./content";
 
 const INTRO_MS = 7000;
@@ -37,6 +37,7 @@ export interface DialState {
   totalRounds: number;
   /** Psychic rotation. */
   order: string[];
+  turns: Record<string, number>;
   cards: DialCard[];
   psychicId: string;
   target: number;
@@ -59,10 +60,7 @@ function guessers(state: DialState): string[] {
 }
 
 function startRound(state: DialState, ctx: GameContext) {
-  // Next in the rotation who's actually here; fall back to the planned one.
-  const planned = (state.round - 1) % state.order.length;
-  const rotation = [...state.order.slice(planned), ...state.order.slice(0, planned)];
-  state.psychicId = rotation.find((id) => ctx.isConnected(id)) ?? rotation[0]!;
+  state.psychicId = nextTurn(state.order, state.turns, ctx.isConnected);
   state.target = ctx.randomInt(TARGET_MIN, TARGET_MAX + 1);
   state.clue = null;
   state.guesses = {};
@@ -127,6 +125,7 @@ export const dial: GameDefinition<DialState> = {
       round: 1,
       totalRounds,
       order: ctx.shuffle(ids),
+      turns: {},
       cards: drawFresh(ctx, "dial:cards", bank, (c) => `${c.left}|${c.right}`, totalRounds).map((c) => ({ left: c.left, right: c.right })),
       psychicId: ids[0]!,
       target: 50,

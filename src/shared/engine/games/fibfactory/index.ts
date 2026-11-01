@@ -19,7 +19,7 @@ import {
   type FibPlayer,
   type FibTv,
 } from "@party/shared";
-import { asRecord, drawFresh, rankOf, sortedScores, type GameContext, type GameDefinition, type GamePlayer } from "../../types";
+import { asRecord, drawFresh, nextTurn, rankOf, sortedScores, type GameContext, type GameDefinition, type GamePlayer } from "../../types";
 import { QUESTIONS } from "./content";
 
 const INTRO_MS = 7000;
@@ -42,6 +42,7 @@ export interface FibState {
   round: number;
   totalRounds: number;
   order: string[];
+  turns: Record<string, number>;
   questions: string[];
   subjectId: string;
   answers: Record<string, string>;
@@ -76,9 +77,7 @@ function checkProgress(state: FibState, ctx: GameContext) {
 }
 
 function startRound(state: FibState, ctx: GameContext) {
-  const planned = (state.round - 1) % state.order.length;
-  const rotation = [...state.order.slice(planned), ...state.order.slice(0, planned)];
-  state.subjectId = rotation.find((id) => ctx.isConnected(id)) ?? rotation[0]!;
+  state.subjectId = nextTurn(state.order, state.turns, ctx.isConnected);
   state.answers = {};
   state.options = [];
   state.picks = {};
@@ -149,6 +148,7 @@ export const fibfactory: GameDefinition<FibState> = {
       round: 1,
       totalRounds,
       order: ctx.shuffle(ids),
+      turns: {},
       questions: drawFresh(ctx, "fib:questions", bank, (q) => q.text, totalRounds).map((q) => q.text),
       subjectId: ids[0]!,
       answers: {},

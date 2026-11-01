@@ -125,7 +125,7 @@ function deal(state: BlackjackState, ctx: GameContext) {
   }
   const naturals = seated.filter((id) => isBlackjack(state.hands[id]!.cards));
   for (const id of naturals) state.hands[id]!.status = "blackjack";
-  ctx.emit({ kind: "deal", sfx: "ui.whoosh", to: seated, haptic: [30, 40, 30] });
+  ctx.emit({ kind: "deal", sfx: "card.deal", to: seated, haptic: [30, 40, 30] });
 
   if (isBlackjack(state.dealer)) {
     // The dealer peeks before anyone acts: blackjack settles the hand on the spot.
@@ -152,7 +152,7 @@ function hit(state: BlackjackState, ctx: GameContext, hand: Hand) {
     return;
   }
   if (total === 21) hand.status = "stood";
-  ctx.emit({ kind: "hit", sfx: "ui.tick", playerId: hand.playerId });
+  ctx.emit({ kind: "hit", sfx: "card.deal", playerId: hand.playerId });
 }
 
 function canDouble(state: BlackjackState, hand: Hand) {
@@ -165,7 +165,7 @@ function startDealer(state: BlackjackState, ctx: GameContext) {
   state.phase = "dealer";
   state.holeRevealed = true;
   ctx.setDeadline(REVEAL_MS);
-  ctx.emit({ kind: "reveal", sfx: "reveal.drumroll" });
+  ctx.emit({ kind: "reveal", sfx: "card.flip" });
 }
 
 function dealerStep(state: BlackjackState, ctx: GameContext) {
@@ -174,7 +174,7 @@ function dealerStep(state: BlackjackState, ctx: GameContext) {
   if (contested && dealerShouldHit(state.dealer)) {
     state.dealer.push(draw(state, ctx));
     ctx.setDeadline(DRAW_MS);
-    ctx.emit({ kind: "dealerDraw", sfx: "ui.tick" });
+    ctx.emit({ kind: "dealerDraw", sfx: "card.deal" });
     return;
   }
   settle(state, ctx);

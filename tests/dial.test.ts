@@ -74,6 +74,19 @@ describe("Dial It In", () => {
     expect(h.finished).toBe(true);
   });
 
+  it("keeps an offline player's psychic turn for when they're back", () => {
+    const h = harness(dial, 3);
+    const first = h.state.order[0]!;
+    h.connected.delete(first);
+    h.fire(); // intro → round 1
+    expect(h.state.psychicId).not.toBe(first);
+    h.connected.add(first);
+    h.fire(); // no clue → skipped
+    h.fire(); // reveal → standings
+    h.fire(); // standings → round 2
+    expect(h.state.psychicId).toBe(first);
+  });
+
   it("clamps guesses onto the dial", () => {
     const h = harness(dial, 2);
     h.fire();

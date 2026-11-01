@@ -13,6 +13,12 @@ const FILES: Record<string, { src: string; volume: number }> = {
   "chip.place": { src: "/sfx/chip-lay.ogg", volume: 0.7 },
   "coin.drop": { src: "/sfx/chips-stack.ogg", volume: 0.7 },
   "rocket.boom": { src: "/sfx/ui-bomb.ogg", volume: 0.9 },
+  "card.deal": { src: "/sfx/card-slide.ogg", volume: 0.7 },
+  "card.flip": { src: "/sfx/card-place.ogg", volume: 0.8 },
+  "card.shuffle": { src: "/sfx/card-shuffle.ogg", volume: 0.7 },
+  "chips.collide": { src: "/sfx/chips-collide.ogg", volume: 0.7 },
+  "dice.roll": { src: "/sfx/dice-shake.ogg", volume: 0.8 },
+  "dice.throw": { src: "/sfx/dice-throw.ogg", volume: 0.8 },
 };
 
 function tone(ctx: AudioContext, out: AudioNode, t: number, freq: number, dur: number, opts: { type?: OscillatorType; vol?: number; to?: number; delay?: number } = {}) {

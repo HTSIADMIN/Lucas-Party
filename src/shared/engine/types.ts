@@ -68,6 +68,18 @@ export function sortedScores(scores: Record<string, number>, gained: Record<stri
     .sort((a, b) => b.score - a.score);
 }
 
+/**
+ * Picks who gets a rotating role (psychic, speaker, defendant…): the connected
+ * player who has had it the fewest times, seat order breaking ties. Someone
+ * who was away keeps their turn for when they're back. Bumps their count.
+ */
+export function nextTurn(order: readonly string[], counts: Record<string, number>, isConnected: (id: string) => boolean): string {
+  const ranked = [...order].sort((a, b) => (counts[a] ?? 0) - (counts[b] ?? 0) || order.indexOf(a) - order.indexOf(b));
+  const pick = ranked.find(isConnected) ?? ranked[0]!;
+  counts[pick] = (counts[pick] ?? 0) + 1;
+  return pick;
+}
+
 /** Pulls `count` unused items from a bank, remembering what this room has seen. */
 export function drawFresh<T>(ctx: GameContext, memoryKey: string, bank: readonly T[], keyOf: (item: T) => string, count: number): T[] {
   const used = new Set((ctx.memory[memoryKey] as string[] | undefined) ?? []);

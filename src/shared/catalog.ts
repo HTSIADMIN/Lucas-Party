@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -186,6 +186,16 @@ export const GAME_CATALOG: GameMeta[] = [
     players: [3, 8], minutes: [8, 12], tags: ["words", "voting"], accent: "#FFD23F",
     howTo: ["Pitch your secret prompt in 1–3 emoji.", "Guess what everyone else's emoji mean.", "Right guesses pay you and the pitcher."],
     inspiredBy: "Our Emoji Pitch idea",
+  },
+
+  {
+    id: "court", name: "Character Court", status: "live",
+    tagline: "Order in the court!",
+    description: "One of you is on trial for a ridiculous crime. Two others are drafted as prosecutor and defense and write their best argument; the jury decides. Lawyers score for every vote they win — and guilty defendants get a silly sentence.",
+    players: [3, 8], minutes: [10, 15], tags: ["writing", "voting"], accent: "#9B6BFF",
+    howTo: ["See who's on trial and for what.", "Lawyers write the case for or against.", "The jury votes: guilty or not guilty?"],
+    options: [{ key: "rounds", label: "Cases", default: 0, choices: [{ value: 4, label: "4" }, { value: 6, label: "6" }, { value: 0, label: "Everyone" }] }],
+    inspiredBy: "Our Character Court idea",
   },
 
   // ── Coming soon (roadmap order, easiest first) ─────────────────────────

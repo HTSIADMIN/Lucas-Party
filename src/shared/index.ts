@@ -29,3 +29,4 @@ export * from "./games/liedetector";
 export * from "./games/mashbash";
 export * from "./games/trivia";
 export * from "./games/emojipitch";
+export * from "./games/court";
