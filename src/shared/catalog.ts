@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby", "bombsquad", "wordbomb", "roulette"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch", "court", "dicederby", "bombsquad", "wordbomb", "roulette", "heist"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -215,6 +215,16 @@ export const GAME_CATALOG: GameMeta[] = [
     howTo: ["Tap chips onto the table from your phone.", "Watch the wheel spin on the TV.", "Hit the hot number for 50 to 1."],
     options: [{ key: "rounds", label: "Spins", default: 8, choices: [{ value: 6, label: "6" }, { value: 8, label: "8" }, { value: 12, label: "12" }] }],
     inspiredBy: "Our roulette table, rebuilt for the room",
+  },
+
+  {
+    id: "heist", name: "Heist Night", status: "live",
+    tagline: "Everyone has a clue. Nobody has the code.",
+    description: "Co-op safecracking. Every phone holds a clue about the vault code — \"the digits add up to 14\", \"there's no 7\" — and only together do they point to one answer. Talk it out, then the safecracker gets three tries before the alarm.",
+    players: [2, 8], minutes: [8, 12], tags: ["co-op", "deduction"], accent: "#8F98A8",
+    howTo: ["Read your secret clue out loud.", "Work out the code together.", "The safecracker gets three tries."],
+    options: [{ key: "rounds", label: "Vaults", default: 4, choices: [{ value: 3, label: "3" }, { value: 4, label: "4" }, { value: 6, label: "6" }] }],
+    inspiredBy: "Our Heist Night idea",
   },
 
   // ── Coming soon (roadmap order, easiest first) ─────────────────────────

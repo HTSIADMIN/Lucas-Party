@@ -1,0 +1,26 @@
+/* Heist Night — TV */
+.heist-stage { gap: 0.9em; }
+.heist-vault { display: grid; justify-items: center; gap: 0.5em; padding: 1.2em 2.4em; border-radius: 50%; background: radial-gradient(circle, #8f98a8, #4c5363 70%); border: 0.25em solid var(--outline); box-shadow: 0 0.35em 0 var(--outline), inset 0 0 0 0.6em #6b7383; }
+.heist-code { display: flex; gap: 0.3em; }
+.heist-digit { width: 1.4em; height: 1.7em; display: grid; place-items: center; border-radius: 0.25em; background: #1b1033; color: #7cff6b; font-family: var(--font-display); font-size: 3.4em; border: 0.06em solid var(--outline); }
+.heist-timer { font-family: var(--font-display); font-size: 2.6em; color: #fff; -webkit-text-stroke: 0.05em var(--ink-900); paint-order: stroke fill; }
+.heist-timer.is-urgent { color: #ff4d5e; animation: heist-flash 0.5s steps(2) infinite; }
+.heist-attempts { display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: center; }
+.heist-attempt { font-family: var(--font-display); font-size: 1.2em; }
+.heist-crew { display: flex; flex-wrap: wrap; gap: 1em; justify-content: center; }
+.heist-member { display: grid; justify-items: center; gap: 0.2em; padding: 0.4em; border-radius: 1em; }
+.heist-member.is-cracker { background: color-mix(in srgb, var(--accent) 30%, transparent); box-shadow: 0 0 0 0.16em var(--accent); }
+.heist-clues { font-weight: 800; font-size: 0.95em; color: var(--on-bg); }
+.heist-outcome { font-family: var(--font-display); font-size: 6em; line-height: 1; -webkit-text-stroke: 0.06em var(--ink-900); paint-order: stroke fill; }
+.heist-outcome.is-open { color: var(--success); }
+.heist-outcome.is-alarm { color: #ff4d5e; animation: heist-flash 0.4s steps(2) 6; }
+@keyframes heist-flash { 50% { opacity: 0.35; } }
+
+/* Heist Night — phone */
+.heist-clue-list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; font-weight: 700; font-size: 1.15rem; }
+.heist-entry { text-align: center; font-family: var(--font-display); font-size: 2.6rem; letter-spacing: 0.3em; padding: 8px; border-radius: var(--r-md); background: #1b1033; color: #7cff6b; }
+.heist-keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.heist-key { min-height: 56px; border-radius: var(--r-md); border: var(--ow) solid var(--outline); background: var(--surface); color: var(--text); font-family: var(--font-display); font-size: 1.6rem; cursor: pointer; box-shadow: var(--sh-1); }
+.heist-key:active { transform: translateY(2px); box-shadow: none; }
+.heist-key.is-enter { background: var(--success); }
+.heist-try { font-family: var(--font-display); font-size: 1.1rem; }

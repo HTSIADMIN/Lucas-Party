@@ -34,3 +34,4 @@ export * from "./games/dicederby";
 export * from "./games/bombsquad";
 export * from "./games/wordbomb";
 export * from "./games/roulette";
+export * from "./games/heist";
