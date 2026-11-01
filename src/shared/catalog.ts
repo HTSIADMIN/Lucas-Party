@@ -2,7 +2,7 @@
 // game picker. `status: "live"` games have an engine in src/shared/engine/games
 // and TV/phone views in src/client/games.
 
-export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia"] as const;
+export const LIVE_GAME_IDS = ["punchline", "rocket", "oddoneout", "greatminds", "mostlikely", "dial", "liarsdice", "spygrid", "oneclue", "blackjack", "shadespotter", "showdown", "doodlefraud", "scribblechain", "fibfactory", "holdem", "fullmoon", "crowdpleaser", "liedetector", "mashbash", "trivia", "emojipitch"] as const;
 export type GameId = (typeof LIVE_GAME_IDS)[number];
 
 export function isGameId(value: unknown): value is GameId {
@@ -177,6 +177,15 @@ export const GAME_CATALOG: GameMeta[] = [
     howTo: ["Read the question on the TV.", "Tap your answer on your phone — fast!", "Right and quick scores the most."],
     options: [{ key: "rounds", label: "Questions", default: 12, choices: [{ value: 9, label: "9" }, { value: 12, label: "12" }, { value: 18, label: "18" }] }],
     inspiredBy: "Classic pub quiz",
+  },
+
+  {
+    id: "emojipitch", name: "Emoji Pitch", status: "live",
+    tagline: "Say it in three emoji.",
+    description: "Everyone gets a secret prompt — a haunted house, a road trip, a dentist visit — and pitches it in one to three emoji. Then the room guesses each pitch from four options. Clear pitches and sharp guesses both score.",
+    players: [3, 8], minutes: [8, 12], tags: ["words", "voting"], accent: "#FFD23F",
+    howTo: ["Pitch your secret prompt in 1–3 emoji.", "Guess what everyone else's emoji mean.", "Right guesses pay you and the pitcher."],
+    inspiredBy: "Our Emoji Pitch idea",
   },
 
   // ── Coming soon (roadmap order, easiest first) ─────────────────────────

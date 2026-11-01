@@ -1,0 +1,15 @@
+/* Emoji Pitch — TV */
+.ep-sample { font-size: 5em; letter-spacing: 0.2em; }
+.ep-stage { gap: 0.7em; }
+.ep-emoji { font-size: 9em; line-height: 1.1; letter-spacing: 0.08em; filter: drop-shadow(0 0.06em 0 rgba(0, 0, 0, 0.35)); }
+.ep-by { display: inline-flex; align-items: center; gap: 0.4em; font-weight: 800; font-size: 1.2em; color: var(--on-bg); }
+.ep-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6em; width: min(56em, 100%); }
+.ep-option { display: flex; align-items: center; gap: 0.6em; padding: 0.5em 0.8em; border-radius: 0.8em; background: var(--surface); color: var(--text); border: 0.14em solid var(--outline); box-shadow: 0 0.18em 0 var(--outline); font-family: var(--font-display); font-size: 1.5em; transition: opacity 0.3s; }
+.ep-option.is-right { background: color-mix(in srgb, var(--success) 40%, var(--surface)); box-shadow: 0 0.18em 0 var(--outline), 0 0 0 0.2em var(--success); }
+.ep-option.is-wrong { opacity: 0.45; }
+.ep-letter { flex: none; width: 1.5em; height: 1.5em; display: grid; place-items: center; border-radius: 50%; background: var(--primary); color: #fff; border: 0.1em solid var(--outline); font-size: 0.85em; }
+.ep-pickers { display: flex; gap: 0.1em; flex-wrap: wrap; font-size: 0.65em; }
+
+/* Emoji Pitch — phone */
+.ep-input { font-size: 2rem; text-align: center; letter-spacing: 0.15em; }
+.ep-mine { font-size: 3.4rem; letter-spacing: 0.1em; }

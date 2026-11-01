@@ -1,0 +1,87 @@
+/* One Clue — TV */
+.oc-stage { display: grid; grid-template-columns: 1fr 1.1fr; gap: 2em; align-items: center; min-height: 0; }
+.oc-guesser { display: grid; justify-items: center; gap: 0.9em; text-align: center; }
+.tv-title.oc-title { font-size: 3em; }
+.bubble.oc-nopeek { font-size: 1.4em; padding: 0.5em 0.9em; border-radius: 0.8em; border-width: 0.12em; }
+.oc-side { display: grid; justify-items: center; gap: 1em; text-align: center; }
+.oc-mystery-row { display: flex; align-items: center; gap: 1.6em; }
+
+/* The face-down mystery card */
+.oc-mystery {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.1em;
+  width: 14em;
+  aspect-ratio: 3 / 2;
+  color: var(--on-primary);
+  background: repeating-linear-gradient(45deg, var(--primary) 0 1em, var(--primary-strong) 1em 2em);
+  border: 0.18em solid var(--outline);
+  border-radius: 1em;
+  box-shadow: 0 0.3em 0 var(--outline);
+}
+.oc-mystery-mark { font-family: var(--font-display); font-size: 5.5em; line-height: 1; color: var(--accent); -webkit-text-stroke: 0.05em var(--ink-900); paint-order: stroke fill; }
+.oc-mystery-label { font-family: var(--font-display); font-size: 1.3em; letter-spacing: 0.04em; padding: 0.05em 0.6em; border-radius: 1em; background: var(--surface); color: var(--text); border: 0.1em solid var(--outline); }
+
+/* Guess + result boards */
+.oc-board { display: grid; gap: 0.8em; align-content: center; justify-items: center; min-height: 0; }
+.oc-head { display: flex; align-items: center; justify-content: center; gap: 1.4em; }
+.oc-head-text { display: grid; justify-items: center; gap: 0.5em; }
+.oc-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 1em; width: min(66em, 100%); }
+.oc-card {
+  position: relative;
+  width: 12.5em;
+  min-height: 6.4em;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.4em;
+  padding: 0.8em 0.7em 0.6em;
+  text-align: center;
+  background: var(--surface);
+  color: var(--text);
+  border: 0.16em solid var(--outline);
+  border-radius: 0.8em;
+  box-shadow: 0 0.25em 0 var(--outline);
+  animation: rise-in 0.5s var(--ease-out) both;
+}
+.oc-card:nth-child(odd) { rotate: -1.2deg; }
+.oc-card:nth-child(even) { rotate: 1.2deg; }
+.oc-card-text { font-family: var(--font-display); font-size: 2.1em; line-height: 1.05; max-width: 100%; overflow-wrap: anywhere; }
+.oc-card-text.is-long { font-size: 1.5em; }
+.oc-card-by { display: inline-flex; align-items: center; gap: 0.35em; max-width: 100%; font-weight: 800; }
+.oc-card-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.oc-card-points { position: absolute; top: -0.8em; right: -0.6em; padding: 0.1em 0.55em; font-family: var(--font-display); font-size: 1.2em; background: var(--success); color: var(--ink-900); border: 0.12em solid var(--outline); border-radius: 1em; animation: pop-in 0.45s var(--ease-pop) 0.5s both; }
+
+/* Cancelled: a blank, striped card during the guess; struck through once revealed */
+.oc-card.is-blank { background: repeating-linear-gradient(-45deg, var(--surface-2) 0 0.7em, var(--surface-3) 0.7em 1.4em); color: var(--text-muted); }
+.oc-card-x { font-family: var(--font-display); font-size: 3em; line-height: 1; color: var(--danger); -webkit-text-stroke: 0.04em var(--ink-900); paint-order: stroke fill; }
+.oc-card.is-cancelled:not(.is-blank) { background: var(--surface-3); animation: oc-flip 0.6s var(--ease-pop) both; }
+.oc-card.is-cancelled:not(.is-blank) .oc-card-text { text-decoration: line-through; text-decoration-thickness: 0.12em; text-decoration-color: var(--danger); opacity: 0.75; }
+.oc-stamp { position: absolute; top: -0.7em; left: 50%; translate: -50% 0; rotate: -6deg; padding: 0.05em 0.6em; font-family: var(--font-display); font-size: 1.05em; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; background: var(--danger); color: var(--ink-900); border: 0.12em solid var(--outline); border-radius: 0.4em; }
+
+/* Result */
+.oc-result-head { display: flex; align-items: center; justify-content: center; gap: 1.6em; }
+.oc-banner { font-family: var(--font-display); font-size: 3.2em; line-height: 1; color: var(--danger); -webkit-text-stroke: 0.08em var(--ink-900); paint-order: stroke fill; text-shadow: 0 0.06em 0 var(--ink-900); }
+.oc-banner.is-good { color: var(--success); }
+.oc-reveal { display: grid; justify-items: center; gap: 0.3em; }
+.tv-sub.oc-reveal-label { font-size: 1.3em; }
+.oc-word { font-family: var(--font-display); font-size: 3em; line-height: 1; padding: 0.2em 0.7em 0.25em; background: var(--accent); color: var(--on-accent); border: 0.06em solid var(--outline); border-radius: 0.35em; box-shadow: 0 0.09em 0 var(--outline); rotate: -2deg; }
+.tv-sub.oc-missing { font-size: 1.2em; }
+.tv-pill.oc-tally { font-size: 1.5em; }
+
+@keyframes oc-flip {
+  0% { opacity: 0; transform: perspective(40em) rotateY(90deg); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* One Clue — phone */
+.oc-phone-lead { text-align: center; font-weight: 700; color: var(--text-muted); }
+.oc-phone-hint { font-weight: 600; font-size: var(--fs-sm); color: var(--text-muted); }
+.oc-phone-clues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.oc-phone-clue { display: grid; gap: 2px; justify-items: center; align-content: center; min-height: 64px; padding: 10px 8px; text-align: center; background: var(--surface-2); color: var(--text); border: var(--ow) solid var(--outline); border-radius: var(--r-md); }
+.oc-phone-clue b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; line-height: 1.1; max-width: 100%; overflow-wrap: anywhere; }
+.oc-phone-clue span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-xs); font-weight: 700; color: var(--text-muted); }
+.oc-phone-clue.is-cancelled { border-style: dashed; background: var(--surface-3); color: var(--text-muted); font-weight: 800; }
+.oc-phone-guess { display: grid; gap: 10px; }
+.oc-phone-word { font-family: var(--font-display); font-size: 1.8rem; color: var(--accent); -webkit-text-stroke: 5px var(--ink-900); paint-order: stroke fill; }

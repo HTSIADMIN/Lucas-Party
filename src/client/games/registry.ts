@@ -107,4 +107,8 @@ export const GAME_VIEWS: Record<GameId, { Tv: Lazy<TvGameProps<any>>; Phone: Laz
     Tv: lazy(() => import("./trivia/TriviaTv")),
     Phone: lazy(() => import("./trivia/TriviaPhone")),
   },
+  emojipitch: {
+    Tv: lazy(() => import("./emojipitch/EmojiPitchTv")),
+    Phone: lazy(() => import("./emojipitch/EmojiPitchPhone")),
+  },
 };
